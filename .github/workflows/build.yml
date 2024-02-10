@@ -1,4 +1,4 @@
-ame: build-image
+name: build-image
 on:
   pull_request:
   schedule:
