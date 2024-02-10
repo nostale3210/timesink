@@ -106,7 +106,6 @@ jobs:
 
       - name: Sign container image
         if: github.event_name != 'pull_request' # signing disabled for PRs because PRs from outside repos wont have access to your signing secret
-        run: |
         env:
           TAGS: ${{ steps.push.outputs.digest }} # hash of the new image, to make sure we sign the right one
           COSIGN_EXPERIMENTAL: false
