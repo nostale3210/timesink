@@ -33,7 +33,7 @@ RUN mkdir -p /usr/etc/flatpak/remotes.d && \
     wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
 
 RUN systemctl unmask flatpak-manager.service && \
-    systemctl enable bazzite-flatpak-manager.service && \
+    systemctl enable flatpak-manager.service && \
     systemctl enable tailscaled.service && \
     systemctl enable com.system76.Scheduler.service && \
     systemctl disable rpm-ostreed-automatic.timer
