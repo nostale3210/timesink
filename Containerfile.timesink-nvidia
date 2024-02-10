@@ -42,7 +42,8 @@ RUN systemctl unmask flatpak-manager.service && \
     systemctl disable rpm-ostreed-automatic.timer
 
 RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
-    sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop
+    sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop && \
+    sed -i 's/stage/none/g' /etc/rpm-ostreed.conf
     
 RUN glib-compile-schemas /usr/share/glib-2.0/schemas
 
