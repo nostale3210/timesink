@@ -1,0 +1,114 @@
+ame: build-image
+on:
+  pull_request:
+  schedule:
+    - cron: '0 17 * * *'
+  push:
+      branches:
+        - "main"
+  workflow_dispatch:
+env:
+    IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+
+jobs:
+  build-and-push:
+    name: Build and push image
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: read # required for reading the repo source code
+      packages: write # required for publishing packages
+      id-token: write # required for logging in to github
+    strategy:
+      fail-fast: false
+      matrix: # all combinations of these variables are built
+        # !!! This is the most important section
+        # Here you decide what to build. 
+        # For multi-image projects, it is common to only use one Containerfile
+        # and use matrix variables to pick between major versions and desktop editions.
+        # See https://github.com/ublue-os/main/blob/main/.github/workflows/build.yml#L21
+        # This example uses this approach, because the variables of a build
+        # are configurable in the Containerfile, and that is easier to grasp when starting out.
+        containerfile: [Containerfile.timesink]
+
+    steps: 
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Gather environment variables
+        run: echo "IMAGE_NAME=$(echo ${{ matrix.containerfile }} | cut -d . -f 2)" >> $GITHUB_ENV
+
+      - name: Image Metadata
+        uses: docker/metadata-action@v4
+        id: meta
+        with:
+          images: |
+            ${{ env.IMAGE_NAME }}
+          labels: |
+            org.opencontainers.image.title=${{ env.IMAGE_NAME }}
+            org.opencontainers.image.description=${{ env.IMAGE_NAME }} is my custom OS image.
+
+      - name: Generate tags
+        id: generate-tags
+        shell: bash
+        run: |
+          TAGS=()
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            TAGS+=("pr-${{ github.event.number }}")
+          else
+            TAGS+=("$(date +%Y%m%d)")
+            TAGS+=("latest")
+          fi
+          echo "Publishing with the following tags: "
+          echo "${TAGS[*]}"
+          
+          echo "TAGS=${TAGS[*]}" >> $GITHUB_OUTPUT
+      - name: Build Image
+        id: build_image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          containerfiles: "./${{ matrix.containerfile }}" # select which containerfile to build
+          image: ${{ env.IMAGE_NAME }} # names the built image
+          tags: ${{ steps.generate-tags.outputs.TAGS }} # pulls in tags from previous step
+          labels: ${{ steps.meta.outputs.labels }} # pulls in labels from previous step
+          oci: false # don't use OCI metadata format instead of the Docker format (false by default)
+
+      - name: Lowercase Registry
+        id: registry_case
+        uses: ASzc/change-string-case-action@v5
+        with:
+          string: ${{ env.IMAGE_REGISTRY }}
+
+      - name: Push To GHCR
+        uses: redhat-actions/push-to-registry@v2
+        id: push
+        env: # set user and pass to use for logging in to GHCR
+          REGISTRY_USER: ${{ github.actor }}
+          REGISTRY_PASSWORD: ${{ github.token }}
+        with:
+          image: ${{ steps.build_image.outputs.image }} # pulls in the newly built image from previous step
+          tags: ${{ steps.build_image.outputs.tags }} # pulls in tags from previous step
+          registry: ${{ steps.registry_case.outputs.lowercase }} # pulls in lowercased image registry string from previous step
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PASSWORD }}
+
+      - name: Login to GHCR
+        uses: docker/login-action@v2
+        if: github.event_name != 'pull_request' # signing disabled for PRs because PRs from outside repos wont have access to your signing secret
+        run: |
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: sigstore/cosign-installer@v3.2.0
+        if: github.event_name != 'pull_request' # signing disabled for PRs because PRs from outside repos wont have access to your signing secret
+        run: |
+      - name: Sign container image
+        if: github.event_name != 'pull_request' # signing disabled for PRs because PRs from outside repos wont have access to your signing secret
+        run: |
+        env:
+          TAGS: ${{ steps.push.outputs.digest }} # hash of the new image, to make sure we sign the right one
+          COSIGN_EXPERIMENTAL: false
+          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
+        run: |
+          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}@${TAGS}
