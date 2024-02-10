@@ -1,0 +1,6 @@
+ublue_variants:
+  - label: nostale3210/timesink
+    ks: /kickstart/ublue-os.ks
+    flavors:
+      - label: timesink
+      - label: timesink-nvidia
