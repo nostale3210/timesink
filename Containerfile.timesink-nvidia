@@ -32,6 +32,8 @@ RUN rpm-ostree install \
 RUN mkdir -p /usr/etc/flatpak/remotes.d && \
     wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
 
+RUN chmod +x /usr/libexec/flatpak-manager
+
 RUN systemctl unmask flatpak-manager.service && \
     systemctl enable flatpak-manager.service && \
     systemctl enable tailscaled.service && \
