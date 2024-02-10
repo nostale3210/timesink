@@ -38,7 +38,8 @@ RUN systemctl unmask flatpak-manager.service && \
     systemctl enable com.system76.Scheduler.service && \
     systemctl disable rpm-ostreed-automatic.timer
 
-RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop
+RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
+    sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop
     
 RUN rm -rf /tmp/* /var/* && \
     ostree container commit
