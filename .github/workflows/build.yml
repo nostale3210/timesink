@@ -103,7 +103,6 @@ jobs:
 
       - uses: sigstore/cosign-installer@v3.2.0
         if: github.event_name != 'pull_request' # signing disabled for PRs because PRs from outside repos wont have access to your signing secret
-        run: |
 
       - name: Sign container image
         if: github.event_name != 'pull_request' # signing disabled for PRs because PRs from outside repos wont have access to your signing secret
