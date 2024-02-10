@@ -44,5 +44,7 @@ RUN systemctl unmask flatpak-manager.service && \
 RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
     sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop
     
+RUN glib-compile-schemas /usr/share/glib-2.0/schemas
+
 RUN rm -rf /tmp/* /var/* && \
     ostree container commit
