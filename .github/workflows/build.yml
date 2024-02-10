@@ -94,7 +94,7 @@ jobs:
           password: ${{ env.REGISTRY_PASSWORD }}
 
       - name: Login to GHCR
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         if: github.event_name != 'pull_request' # signing disabled for PRs because PRs from outside repos wont have access to your signing secret
         with:
           registry: ghcr.io
