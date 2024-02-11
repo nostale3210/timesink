@@ -24,6 +24,7 @@ RUN rpm-ostree install \
         gnome-terminal-nautilus \
         gnome-tour \
         htop \
+        toolbox \
         ublue-os-update-services \
         yelp && \
     pip install --prefix=/usr topgrade && \
