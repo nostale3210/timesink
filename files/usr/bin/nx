@@ -1,0 +1,2 @@
+#!/bin/bash
+nix --store /var/home/$USER/.local/share/nix $@
