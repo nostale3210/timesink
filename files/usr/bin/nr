@@ -1,2 +1,2 @@
 #!/bin/bash
-nix run nixpkgs#$1
+nix run --store /var/home/$USER/.local/share/nix nixpkgs#$@
