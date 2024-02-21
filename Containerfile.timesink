@@ -30,10 +30,9 @@ RUN rpm-ostree install \
     pip install --prefix=/usr topgrade && \
     pip install --prefix=/usr nautilus-open-any-terminal
 
-RUN curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix && \
-    chmod +x /usr/bin/nix && \
-    mkdir -p /etc/nix/store && \
-    chmod 755 /etc/nix/store
+RUN mkdir -p /etc/nix/store && \
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
+    sh -s -- install ostree --no-confirm --persistence=/etc/nix/store
 
 RUN mkdir -p /usr/etc/flatpak/remotes.d && \
     wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
@@ -45,7 +44,6 @@ RUN systemctl disable rpm-ostreed-automatic.timer && \
     systemctl enable dconf-update.service && \
     systemctl enable flatpak-manager.service && \
     systemctl enable tailscaled.service && \
-    systemctl enable nix.mount && \
     systemctl unmask flatpak-manager.service
 
 RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
