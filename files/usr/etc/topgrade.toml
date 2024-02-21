@@ -1,0 +1,16 @@
+[misc]
+no_self_update = true
+disable = ["self_update", "toolbx"]
+ignore_failures = ["distrobox", "flatpak", "brew_cask", "brew_formula", "nix", "pip3", "helm", "home_manager", "firmware", "containers"]
+assume_yes = true
+no_retry = false
+cleanup = true
+
+[linux]
+rpm_ostree = true
+
+[flatpak]
+use_sudo = false
+
+[distrobox]
+use_root = false
