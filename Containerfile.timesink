@@ -32,7 +32,7 @@ RUN rpm-ostree install \
 
 RUN mkdir -p /etc/nix/store && \
     curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
-    sh -s -- install ostree --extra-conf "sandbox = false" --no-start-daemon --no-confirm --persistence=/etc/nix/store
+    sh -s -- install linux --no-start-daemon --no-confirm --persistence=/etc/nix/store
 
 RUN mkdir -p /usr/etc/flatpak/remotes.d && \
     wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
