@@ -32,20 +32,21 @@ RUN rpm-ostree install \
 
 RUN curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix && \
     chmod +x /usr/bin/nix && \
-    mkdir -p /nix/var/nix && \
-    chmod -R 755 /nix
+    mkdir -p /etc/nix/store && \
+    chmod 755 /etc/nix/store
 
 RUN mkdir -p /usr/etc/flatpak/remotes.d && \
     wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
 
 RUN chmod +x /usr/libexec/flatpak-manager
 
-RUN systemctl unmask flatpak-manager.service && \
-    systemctl enable flatpak-manager.service && \
-    systemctl enable tailscaled.service && \
+RUN systemctl disable rpm-ostreed-automatic.timer && \
     systemctl enable com.system76.Scheduler.service && \
     systemctl enable dconf-update.service && \
-    systemctl disable rpm-ostreed-automatic.timer
+    systemctl enable flatpak-manager.service && \
+    systemctl enable tailscaled.service && \
+    systemctl enable nix.mount && \
+    systemctl unmask flatpak-manager.service
 
 RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
     sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop && \
