@@ -1,0 +1,29 @@
+#!/bin/bash
+cur_profile="$(readlink ~/.local/state/nix/profiles/profile)"
+store_addr="$(readlink ~/.local/state/nix/profiles/$cur_profile)"
+store_location="/var/home/$USER/.${store_addr:1}/bin/*"
+
+bins=()
+for file in $store_location
+do
+	bin="$(basename $file)"
+	local_bin="/var/home/$USER/.local/bin/$bin"
+	touch "$local_bin"
+	echo "#!/bin/bash
+ne $bin "'"$@"' > "$local_bin"
+	chmod +x "$local_bin"
+	bins+=( "$bin" )
+done
+
+apps=()
+for file in /var/home/$USER/.local/bin/*
+do
+	app="$(basename $file)"
+	apps+=( "$app" )
+done
+
+diff="$(echo ${apps[@]} ${bins[@]} | tr ' ' '\n' | sort | uniq -u)"
+for app in $diff
+do
+	rm -rf /var/home/$USER/.local/bin/$app
+done
