@@ -40,7 +40,9 @@ RUN curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/late
 RUN mkdir -p /usr/etc/flatpak/remotes.d && \
     wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
 
-RUN chmod +x /usr/libexec/flatpak-manager
+RUN chmod +x /usr/libexec/flatpak-manager && \
+    chmod +x /usr/libexec/topgrade-setup
+
 
 RUN systemctl disable rpm-ostreed-automatic.timer && \
     systemctl enable com.system76.Scheduler.service && \
