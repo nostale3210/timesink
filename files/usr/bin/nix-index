@@ -22,4 +22,4 @@ for app in $diff
 do
 	rm -rf /var/home/$USER/.local/bin/$app
 done
-cd $pwd
+cd $cur_dir
