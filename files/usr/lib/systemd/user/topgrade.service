@@ -1,0 +1,7 @@
+[Unit]
+Description=Update System
+ConditionACPower=true
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/topgrade

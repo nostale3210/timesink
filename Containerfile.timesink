@@ -47,7 +47,8 @@ RUN systemctl disable rpm-ostreed-automatic.timer && \
     systemctl enable dconf-update.service && \
     systemctl enable flatpak-manager.service && \
     systemctl enable tailscaled.service && \
-    systemctl unmask flatpak-manager.service
+    systemctl unmask flatpak-manager.service && \
+    systemctl --global enable topgrade.timer
 
 RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
     sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop && \
