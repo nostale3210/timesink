@@ -4,4 +4,3 @@ if [ ! -d ~/.nix/var/nix ] || [ ! -d ~/.local/bin ]; then
         mkdir -p ~/.local/bin
 fi
 proot -b ~/.nix:/nix ~/.nix-profile/bin/"$@"
-nix-index

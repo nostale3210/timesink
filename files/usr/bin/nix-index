@@ -1,25 +1,20 @@
 #!/bin/bash
-cur_profile="$(readlink ~/.local/state/nix/profiles/profile)"
-store_addr="$(readlink ~/.local/state/nix/profiles/$cur_profile)"
-store_location="/var/home/$USER/.${store_addr:1}/bin/*"
-
 bins=()
-for file in $store_location
+for file in $(nenv ls ~/.nix-profile/bin) ;
 do
-	bin="$(basename $file)"
-	local_bin="/var/home/$USER/.local/bin/$bin"
-	touch "$local_bin"
+	local_bin="/var/home/$USER/.local/bin/$file"
+	touch $local_bin
 	echo "#!/bin/bash
-ne $bin "'"$@"' > "$local_bin"
+~/ne $file "'"$@"' > "$local_bin"
 	chmod +x "$local_bin"
-	bins+=( "$bin" )
+	bins+=( "$file" )
 done
-
+cur_dir=pwd
+cd ~/.local/bin
 apps=()
-for file in /var/home/$USER/.local/bin/*
+for file in * ;
 do
-	app="$(basename $file)"
-	apps+=( "$app" )
+	apps+=( "$file" )
 done
 
 diff="$(echo ${apps[@]} ${bins[@]} | tr ' ' '\n' | sort | uniq -u)"
@@ -27,3 +22,4 @@ for app in $diff
 do
 	rm -rf /var/home/$USER/.local/bin/$app
 done
+cd $pwd
