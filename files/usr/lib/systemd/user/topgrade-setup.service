@@ -1,0 +1,13 @@
+[Unit]
+Description=Copy topgrade config into user home
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/topgrade-setup
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=0
+
+[Install]
+WantedBy=default.target

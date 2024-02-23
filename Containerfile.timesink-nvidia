@@ -53,7 +53,8 @@ RUN systemctl unmask flatpak-manager.service && \
     systemctl enable com.system76.Scheduler.service && \
     systemctl enable dconf-update.service && \
     systemctl disable rpm-ostreed-automatic.timer && \
-    systemctl --global enable topgrade.timer
+    systemctl --global enable topgrade.timer && \
+    systemctl --global enable topgrade-setup.service
 
 RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
     sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop && \
