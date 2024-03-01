@@ -3,6 +3,7 @@ FROM ghcr.io/ublue-os/silverblue-nvidia:latest
 COPY files/ /
 COPY scripts/ /tmp/scripts
 
+RUN chmod +x /tmp/scripts/*
 RUN /tmp/scripts/common.sh
 
 RUN /tmp/scripts/gnome.sh
