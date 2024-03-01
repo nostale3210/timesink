@@ -51,7 +51,14 @@ RUN rpm-ostree install \
     rpm-ostree override remove \
         htop \
         toolbox && \
-    pip install --prefix=/usr topgrade && \
+    pip install --prefix=/usr topgrade
+
+RUN git clone https://github.com/maxiberta/kwin-system76-scheduler-integration.git --depth 1 /tmp/kwin-system76-scheduler-integration && \
+    git clone https://github.com/catsout/wallpaper-engine-kde-plugin.git --depth 1 /tmp/wallpaper-engine-kde-plugin && \
+    kpackagetool5 --type=KWin/Script --global --install /tmp/kwin-system76-scheduler-integration && \
+    kpackagetool5 --type=Plasma/Wallpaper --global --install /tmp/wallpaper-engine-kde-plugin/plugin && \
+    rm -rf /tmp/kwin-system76-scheduler-integration && \
+    rm -rf /tmp/wallpaper-engine-kde-plugin
 
 RUN curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix && \
     curl -L https://proot.gitlab.io/proot/bin/proot > /usr/bin/proot && \
