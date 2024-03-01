@@ -1,10 +1,11 @@
 FROM ghcr.io/ublue-os/silverblue-main:latest
 
 COPY files/ /
+COPY scripts/ /tmp/scripts
 
-RUN ./scripts/common.sh
+RUN /tmp/scripts/common.sh
 
-RUN ./scripts/gnome.sh
+RUN /tmp/scripts/gnome.sh
 
 RUN wget https://copr.fedorainfracloud.org/coprs/peterwu/rendezvous/repo/fedora-$(rpm -E %fedora)/peterwu-rendezvous-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_peterwu-rendevouz.repo
 

@@ -1,10 +1,11 @@
 FROM ghcr.io/ublue-os/silverblue-nvidia:latest
 
 COPY files/ /
+COPY scripts/ /tmp/scripts
 
-RUN ./scripts/common.sh
+RUN /tmp/scripts/common.sh
 
-RUN ./scripts/gnome.sh
+RUN /tmp/scripts/gnome.sh
 
 RUN wget https://copr.fedorainfracloud.org/coprs/peterwu/rendezvous/repo/fedora-$(rpm -E %fedora)/peterwu-rendezvous-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_peterwu-rendevouz.repo && \
     wget https://copr.fedorainfracloud.org/coprs/gloriouseggroll/nvidia-explicit-sync/repo/fedora-$(rpm -E %fedora)/gloriouseggroll-nvidia-explicit-sync-fedora-$(rpm -E %fedora).repo?arch=x86_64 -O /etc/yum.repos.d/_copr_gloriouseggroll-nvidia-explicit-sync.repo
