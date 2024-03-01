@@ -21,7 +21,6 @@ RUN rpm-ostree install \
         xorg-x11-drv-nvidia-power \
         xorg-x11-drv-nvidia-cuda-libs \
         nvidia-vaapi-driver \
-        nvidia-vaapi-backend \
         libva-utils \
         vdpauinfo
 
