@@ -2,7 +2,7 @@
 
 set -oue pipefail
 
-ln -s /usr/bin/ld.bfd /usr/bin/ld
+mkdir -p /var/lib/alternatives
 
 rpm-ostree install \
     binutils \
