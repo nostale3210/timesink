@@ -12,6 +12,8 @@ rpm-ostree install \
     libva-utils \
     vdpauinfo
 
-/usr/sbin/akmods --force
+KERNEL_VERSION="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
+
+akmods --force --kernels "${KERNEL_VERSION}" --kmod nvidia
 
 systemctl enable nvidia-{suspend,resume,hibernate}
