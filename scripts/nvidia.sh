@@ -2,7 +2,10 @@
 
 set -oue pipefail
 
+ln -s /usr/bin/ld.bfd /usr/bin/ld
+
 rpm-ostree install \
+    binutils \
     akmod-nvidia \
     xorg-x11-drv-nvidia \
     xorg-x11-drv-nvidia-cuda \
