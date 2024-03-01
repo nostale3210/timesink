@@ -13,6 +13,8 @@ rpm-ostree install \
     libva-utils \
     vdpauinfo
 
+ln -s /usr/bin/ld.bfd /etc/alternatives/ld && ln -s /etc/alternatives/ld /usr/bin/ld
+
 RELEASE="$(rpm -E '%fedora.%_arch')"
 KERNEL_VERSION="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 NVIDIA_PACKAGE_NAME="nvidia"
