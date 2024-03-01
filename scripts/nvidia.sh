@@ -4,6 +4,8 @@ set -oue pipefail
 
 rpm-ostree install \
     binutils \
+    akmods \
+    mock \
     akmod-nvidia \
     xorg-x11-drv-nvidia \
     xorg-x11-drv-nvidia-cuda \
@@ -11,7 +13,8 @@ rpm-ostree install \
     xorg-x11-drv-nvidia-cuda-libs \
     nvidia-vaapi-driver \
     libva-utils \
-    vdpauinfo
+    vdpauinfo \
+    kernel-devel-$(rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')
 
 ln -s /usr/bin/ld.bfd /etc/alternatives/ld && ln -s /etc/alternatives/ld /usr/bin/ld
 
