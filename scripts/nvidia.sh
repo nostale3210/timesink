@@ -2,7 +2,7 @@
 
 set -oue pipefail
 
-mkdir -p /var/lib/alternatives
+ln -s /usr/bin/ld.bfd /usr/bin/ld
 
 rpm-ostree install \
     binutils \
@@ -25,5 +25,7 @@ akmods --force --kernels "${KERNEL_VERSION}" --kmod "${NVIDIA_PACKAGE_NAME}"
 
 modinfo /usr/lib/modules/${KERNEL_VERSION}/extra/${NVIDIA_PACKAGE_NAME}/nvidia{,-drm,-modeset,-uvm}.ko.xz > /dev/null || \
 (cat /var/cache/akmods/${NVIDIA_PACKAGE_NAME}/${NVIDIA_AKMOD_VERSION}-for-${KERNEL_VERSION}.failed.log && exit 1)
+
+rm -rf /usr/bin/ld
 
 systemctl enable nvidia-{suspend,resume,hibernate}
