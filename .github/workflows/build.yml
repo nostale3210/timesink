@@ -66,6 +66,13 @@ jobs:
           
           echo "TAGS=${TAGS[*]}" >> $GITHUB_OUTPUT
 
+      - name: Retrieve akmods signing keys
+        run: |
+          mkdir certs
+          echo "${{ secrets.AKMOD_PUBKEY }}" | base64 --decode > certs/public_key.der
+          echo "${{ secrets.AKMOD_PRIVKEY }}" > certs/private_key.priv
+          wc -c certs/public_key.der certs/private_key.priv
+
       - name: Build Image
         id: build_image
         uses: redhat-actions/buildah-build@v2
