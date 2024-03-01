@@ -72,7 +72,6 @@ RUN mkdir -p /usr/etc/flatpak/remotes.d && \
 RUN chmod +x /usr/libexec/flatpak-manager && \
     chmod +x /usr/libexec/topgrade-setup
 
-
 RUN systemctl enable com.system76.Scheduler.service && \
     systemctl enable dconf-update.service && \
     systemctl unmask flatpak-manager.service && \
@@ -81,6 +80,11 @@ RUN systemctl enable com.system76.Scheduler.service && \
     systemctl enable nvidia-{suspend,resume,hibernate} && \
     systemctl --global enable topgrade.timer && \
     systemctl --global enable topgrade-setup.service
+
+RUN mkdir -p /usr/share/fonts/Noto && \
+    curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.tar.xz && \
+    tar -xf Noto.tar.xz --directory /usr/share/fonts/Noto && \
+    rm -rf Noto.tar.xz
 
 RUN glib-compile-schemas /usr/share/glib-2.0/schemas
 
