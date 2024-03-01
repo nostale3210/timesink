@@ -49,7 +49,6 @@ RUN rpm-ostree install \
         system76-scheduler \
         tailscale && \
     rpm-ostree override remove \
-        htop \
         toolbox && \
     pip install --prefix=/usr topgrade
 
