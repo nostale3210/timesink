@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-kinoite:rawhide
+FROM quay.io/fedora/fedora-kinoite:40
 
 COPY files/ /
 
