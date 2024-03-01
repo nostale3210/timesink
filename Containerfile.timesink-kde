@@ -1,0 +1,92 @@
+FROM quay.io/fedora/fedora-kinoite:rawhide
+
+COPY files/ /
+
+RUN wget https://copr.fedorainfracloud.org/coprs/kylegospo/system76-scheduler/repo/fedora-$(rpm -E %fedora)/kylegospo-system76-scheduler-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_kylegospo-system76-scheduler.repo && \
+    wget https://pkgs.tailscale.com/stable/fedora/tailscale.repo -O /etc/yum.repos.d/tailscale.repo && \
+    sed -i 's@gpgcheck=1@gpgcheck=0@g' /etc/yum.repos.d/tailscale.repo && \
+    rpm-ostree install \
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    rpm-ostree install \
+        rpmfusion-free-release \
+        rpmfusion-nonfree-release \
+        --uninstall rpmfusion-free-release \
+        --uninstall rpmfusion-nonfree-release
+
+RUN rpm-ostree install \
+        akmod-nvidia \
+        xorg-x11-drv-nvidia \
+        xorg-x11-drv-nvidia-cuda \
+        xorg-x11-drv-nvidia-power \
+        xorg-x11-drv-nvidia-cuda-libs \
+        nvidia-vaapi-driver \
+        nvidia-vaapi-backend \
+        libva-utils \
+        vdpauinfo
+
+RUN rpm-ostree override remove \
+        libavfilter-free \
+        libavformat-free \
+        libavcodec-free \
+        libavutil-free \
+        libpostproc-free \
+        libswresample-free \
+        libswscale-free \
+        --install ffmpeg && \
+    rpm-ostree install \
+        gstreamer1-plugin-libav \
+        gstreamer1-plugins-bad-free-extras \
+        gstreamer1-plugins-ugly \
+        gstreamer1-vaapi \
+        steam-devices
+
+RUN rpm-ostree install \
+        fastfetch \
+        gnome-shell-extension-system76-scheduler \
+        nautilus-python \
+        neovim \
+        papirus-icon-theme \
+        powertop \
+        python3-pip \
+        system76-scheduler \
+        tailscale && \
+    rpm-ostree override remove \
+        gnome-terminal-nautilus \
+        gnome-tour \
+        htop \
+        toolbox \
+        ublue-os-update-services \
+        yelp && \
+    pip install --prefix=/usr topgrade && \
+    pip install --prefix=/usr nautilus-open-any-terminal
+
+RUN curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix && \
+    curl -L https://proot.gitlab.io/proot/bin/proot > /usr/bin/proot && \
+    curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net |sh && \
+    chmod +x tectonic && mv tectonic /usr/bin/tectonic && \
+    chmod +x /usr/bin/nix && chmod +x /usr/bin/proot && chmod +x /usr/bin/nx && \
+    chmod +x /usr/bin/ne && chmod +x /usr/bin/nenv && chmod +x /usr/bin/nix-index
+
+RUN mkdir -p /usr/etc/flatpak/remotes.d && \
+    wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
+
+RUN chmod +x /usr/libexec/flatpak-manager && \
+    chmod +x /usr/libexec/topgrade-setup
+
+
+RUN systemctl enable com.system76.Scheduler.service && \
+    systemctl enable dconf-update.service && \
+    systemctl unmask flatpak-manager.service && \
+    systemctl enable flatpak-manager.service && \
+    systemctl enable tailscaled.service && \
+    systemctl enable nvidia-{suspend,resume,hibernate} && \
+    systemctl --global enable topgrade.timer && \
+    systemctl --global enable topgrade-setup.service
+
+RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
+    
+RUN glib-compile-schemas /usr/share/glib-2.0/schemas
+
+RUN rm -rf /tmp/* /var/* && \
+    ostree container commit
