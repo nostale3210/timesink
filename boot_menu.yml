@@ -4,4 +4,4 @@ ublue_variants:
     flavors:
       - label: timesink
       - label: timesink-nvidia
-      - label: timesink-kde
+      - label: timesink-kde-nvidia

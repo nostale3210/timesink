@@ -1,0 +1,16 @@
+FROM quay.io/fedora/fedora-kinoite:40
+
+COPY files/ /
+COPY scripts/ /tmp/scripts
+
+RUN chmod +x /tmp/scripts/*
+RUN /tmp/scripts/common.sh
+
+RUN /tmp/scripts/fusion.sh
+
+RUN /tmp/scripts/nvidia.sh
+
+RUN /tmp/scripts/kde.sh
+
+RUN rm -rf /tmp/* /var/* && \
+    ostree container commit
