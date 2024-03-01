@@ -18,8 +18,8 @@ rpm-ostree install \
 
 ln -s /usr/bin/ld.bfd /etc/alternatives/ld && ln -s /etc/alternatives/ld /usr/bin/ld
 
-cp public_key.der /etc/pki/akmods/certs/public_key.der
-cp private_key.priv /etc/pki/akmods/private/private_key.priv
+cp certs/public_key.der /etc/pki/akmods/certs/public_key.der
+cp certs/private_key.priv /etc/pki/akmods/private/private_key.priv
 
 RELEASE="$(rpm -E '%fedora.%_arch')"
 KERNEL_VERSION="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
