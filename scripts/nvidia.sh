@@ -12,4 +12,6 @@ rpm-ostree install \
     libva-utils \
     vdpauinfo
 
+/usr/sbin/akmods --force
+
 systemctl enable nvidia-{suspend,resume,hibernate}
