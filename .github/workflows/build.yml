@@ -71,7 +71,7 @@ jobs:
           mkdir certs
           echo "${{ secrets.AKMOD_PUBKEY }}" | base64 --decode > certs/public_key.der
           echo "${{ secrets.AKMOD_PRIVKEY }}" > certs/private_key.priv
-          wc -c certs/public_key.der certs/private_key.priv
+        shell: bash
 
       - name: Build Image
         id: build_image
