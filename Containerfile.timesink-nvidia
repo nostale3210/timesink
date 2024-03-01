@@ -2,66 +2,29 @@ FROM ghcr.io/ublue-os/silverblue-nvidia:latest
 
 COPY files/ /
 
+RUN ./scripts/common.sh
+
+RUN ./scripts/gnome.sh
+
 RUN wget https://copr.fedorainfracloud.org/coprs/peterwu/rendezvous/repo/fedora-$(rpm -E %fedora)/peterwu-rendezvous-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_peterwu-rendevouz.repo && \
-    wget https://copr.fedorainfracloud.org/coprs/che/nerd-fonts/repo/fedora-$(rpm -E %fedora)/che-nerd-fonts-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_che-nerd-fonts.repo && \
-    wget https://copr.fedorainfracloud.org/coprs/kylegospo/system76-scheduler/repo/fedora-$(rpm -E %fedora)/kylegospo-system76-scheduler-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_kylegospo-system76-scheduler.repo && \
-    wget https://copr.fedorainfracloud.org/coprs/gloriouseggroll/nvidia-explicit-sync/repo/fedora-$(rpm -E %fedora)/gloriouseggroll-nvidia-explicit-sync-fedora-$(rpm -E %fedora).repo?arch=x86_64 -O /etc/yum.repos.d/_copr_gloriouseggroll-nvidia-explicit-sync.repo && \
-    wget https://pkgs.tailscale.com/stable/fedora/tailscale.repo -O /etc/yum.repos.d/tailscale.repo && \
-    sed -i 's@gpgcheck=1@gpgcheck=0@g' /etc/yum.repos.d/tailscale.repo
+    wget https://copr.fedorainfracloud.org/coprs/gloriouseggroll/nvidia-explicit-sync/repo/fedora-$(rpm -E %fedora)/gloriouseggroll-nvidia-explicit-sync-fedora-$(rpm -E %fedora).repo?arch=x86_64 -O /etc/yum.repos.d/_copr_gloriouseggroll-nvidia-explicit-sync.repo
 
 RUN rpm-ostree install \
         bibata-cursor-themes \
-        fastfetch \
-        gnome-shell-extension-system76-scheduler \
-        nautilus-python \
-        neovim \
-        nerd-fonts \
-        papirus-icon-theme \
-        powertop \
-        python3-pip \
-        system76-scheduler \
-        tailscale && \
+        nautilus-python && \
     rpm-ostree override remove \
-        gnome-terminal-nautilus \
-        gnome-tour \
         htop \
-        toolbox \
-        ublue-os-update-services \
-        yelp && \
+        ublue-os-update-services && \
     rpm-ostree override replace \
     --experimental \
     --from repo=copr:copr.fedorainfracloud.org:gloriouseggroll:nvidia-explicit-sync \
-        xorg-x11-server-Xwayland && \
-    pip install --prefix=/usr topgrade && \
-    pip install --prefix=/usr nautilus-open-any-terminal
+        xorg-x11-server-Xwayland
 
-RUN curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix && \
-    curl -L https://proot.gitlab.io/proot/bin/proot > /usr/bin/proot && \
-    curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net |sh && \
-    chmod +x tectonic && mv tectonic /usr/bin/tectonic && \
-    chmod +x /usr/bin/nix && chmod +x /usr/bin/proot && chmod +x /usr/bin/nx && \
-    chmod +x /usr/bin/ne && chmod +x /usr/bin/nenv && chmod +x /usr/bin/nix-index
+RUN systemctl disable rpm-ostreed-automatic.timer
 
-RUN mkdir -p /usr/etc/flatpak/remotes.d && \
-    wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
-
-RUN chmod +x /usr/libexec/flatpak-manager && \
-    chmod +x /usr/libexec/topgrade-setup
-
-RUN systemctl unmask flatpak-manager.service && \
-    systemctl enable flatpak-manager.service && \
-    systemctl enable tailscaled.service && \
-    systemctl enable com.system76.Scheduler.service && \
-    systemctl enable dconf-update.service && \
-    systemctl disable rpm-ostreed-automatic.timer && \
-    systemctl --global enable topgrade.timer && \
-    systemctl --global enable topgrade-setup.service
-
-RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
-    sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop && \
+RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop && \
     sed -i 's/stage/none/g' /etc/rpm-ostreed.conf
     
-RUN glib-compile-schemas /usr/share/glib-2.0/schemas
 
 RUN rm -rf /tmp/* /var/* && \
     ostree container commit

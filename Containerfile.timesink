@@ -2,62 +2,22 @@ FROM ghcr.io/ublue-os/silverblue-main:latest
 
 COPY files/ /
 
-RUN wget https://copr.fedorainfracloud.org/coprs/peterwu/rendezvous/repo/fedora-$(rpm -E %fedora)/peterwu-rendezvous-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_peterwu-rendevouz.repo && \
-    wget https://copr.fedorainfracloud.org/coprs/che/nerd-fonts/repo/fedora-$(rpm -E %fedora)/che-nerd-fonts-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_che-nerd-fonts.repo && \
-    wget https://copr.fedorainfracloud.org/coprs/kylegospo/system76-scheduler/repo/fedora-$(rpm -E %fedora)/kylegospo-system76-scheduler-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_kylegospo-system76-scheduler.repo && \
-    wget https://pkgs.tailscale.com/stable/fedora/tailscale.repo -O /etc/yum.repos.d/tailscale.repo && \
-    sed -i 's@gpgcheck=1@gpgcheck=0@g' /etc/yum.repos.d/tailscale.repo
+RUN ./scripts/common.sh
+
+RUN ./scripts/gnome.sh
+
+RUN wget https://copr.fedorainfracloud.org/coprs/peterwu/rendezvous/repo/fedora-$(rpm -E %fedora)/peterwu-rendezvous-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_peterwu-rendevouz.repo
 
 RUN rpm-ostree install \
-        bibata-cursor-themes \
-        fastfetch \
-        gnome-shell-extension-system76-scheduler \
-        nautilus-python \
-        neovim \
-        nerd-fonts \
-        papirus-icon-theme \
-        powertop \
-        python3-pip \
-        system76-scheduler \
-        tailscale && \
+        bibata-cursor-themes && \
     rpm-ostree override remove \
-        gnome-terminal-nautilus \
-        gnome-tour \
         htop \
-        toolbox \
-        ublue-os-update-services \
-        yelp && \
-    pip install --prefix=/usr topgrade && \
-    pip install --prefix=/usr nautilus-open-any-terminal
+        ublue-os-update-services
 
-RUN curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix && \
-    curl -L https://proot.gitlab.io/proot/bin/proot > /usr/bin/proot && \
-    curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net |sh && \
-    chmod +x tectonic && mv tectonic /usr/bin/tectonic && \
-    chmod +x /usr/bin/nix && chmod +x /usr/bin/proot && chmod +x /usr/bin/nx && \
-    chmod +x /usr/bin/ne && chmod +x /usr/bin/nenv && chmod +x /usr/bin/nix-index
+RUN systemctl disable rpm-ostreed-automatic.timer
 
-RUN mkdir -p /usr/etc/flatpak/remotes.d && \
-    wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
-
-RUN chmod +x /usr/libexec/flatpak-manager && \
-    chmod +x /usr/libexec/topgrade-setup
-
-
-RUN systemctl disable rpm-ostreed-automatic.timer && \
-    systemctl enable com.system76.Scheduler.service && \
-    systemctl enable dconf-update.service && \
-    systemctl enable flatpak-manager.service && \
-    systemctl enable tailscaled.service && \
-    systemctl unmask flatpak-manager.service && \
-    systemctl --global enable topgrade.timer && \
-    systemctl --global enable topgrade-setup.service
-
-RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
-    sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop && \
+RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvtop.desktop && \
     sed -i 's/stage/none/g' /etc/rpm-ostreed.conf
     
-RUN glib-compile-schemas /usr/share/glib-2.0/schemas
-
 RUN rm -rf /tmp/* /var/* && \
     ostree container commit
