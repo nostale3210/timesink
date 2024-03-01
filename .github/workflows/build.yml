@@ -68,9 +68,8 @@ jobs:
 
       - name: Retrieve akmods signing keys
         run: |
-          mkdir certs
-          echo "${{ secrets.AKMOD_PUBKEY }}" | base64 --decode > certs/public_key.der
-          echo "${{ secrets.AKMOD_PRIVKEY }}" > certs/private_key.priv
+          echo ${{ secrets.AKMOD_PUBKEY }} | base64 --decode > public_key.der
+          echo ${{ secrets.AKMOD_PRIVKEY }} > private_key.priv
         shell: bash
 
       - name: Build Image
