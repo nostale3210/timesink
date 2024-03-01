@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-kinoite:latest
+FROM quay.io/fedora/fedora-kinoite:40
 
 COPY files/ /
 COPY scripts/ /tmp/scripts
