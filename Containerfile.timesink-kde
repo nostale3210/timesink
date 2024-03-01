@@ -42,8 +42,6 @@ RUN rpm-ostree override remove \
 
 RUN rpm-ostree install \
         fastfetch \
-        gnome-shell-extension-system76-scheduler \
-        nautilus-python \
         neovim \
         papirus-icon-theme \
         powertop \
@@ -51,14 +49,9 @@ RUN rpm-ostree install \
         system76-scheduler \
         tailscale && \
     rpm-ostree override remove \
-        gnome-terminal-nautilus \
-        gnome-tour \
         htop \
-        toolbox \
-        ublue-os-update-services \
-        yelp && \
+        toolbox && \
     pip install --prefix=/usr topgrade && \
-    pip install --prefix=/usr nautilus-open-any-terminal
 
 RUN curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix && \
     curl -L https://proot.gitlab.io/proot/bin/proot > /usr/bin/proot && \
@@ -83,8 +76,6 @@ RUN systemctl enable com.system76.Scheduler.service && \
     systemctl --global enable topgrade.timer && \
     systemctl --global enable topgrade-setup.service
 
-RUN sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop && \
-    
 RUN glib-compile-schemas /usr/share/glib-2.0/schemas
 
 RUN rm -rf /tmp/* /var/* && \
