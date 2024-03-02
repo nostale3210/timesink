@@ -20,6 +20,7 @@ rpm-ostree override remove \
     toolbox
 
 pip install --prefix=/usr topgrade
+pip install --prefix=/usr pynvim
 
 curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix
 curl -L https://proot.gitlab.io/proot/bin/proot > /usr/bin/proot

@@ -3,6 +3,7 @@
 set -oue pipefail
 
 rpm-ostree install \
+    adw-gtk3-theme \
     gnome-shell-extension-system76-scheduler \
     gnome-tweaks \
     nautilus-python
