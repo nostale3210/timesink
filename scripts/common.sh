@@ -2,12 +2,15 @@
 
 set -oue pipefail
 
+#maybe relevant for nvidia
 mkdir -p /var/lib/alternatives
 chmod 1777 /tmp /var/tmp
 
+#add repos
 wget https://copr.fedorainfracloud.org/coprs/kylegospo/system76-scheduler/repo/fedora-$(rpm -E %fedora)/kylegospo-system76-scheduler-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_kylegospo-system76-scheduler.repo
 wget https://pkgs.tailscale.com/stable/fedora/tailscale.repo -O /etc/yum.repos.d/tailscale.repo
 
+#packages for all images
 rpm-ostree install \
     fastfetch \
     neovim \
@@ -22,6 +25,7 @@ rpm-ostree override remove \
 pip install --prefix=/usr topgrade
 pip install --prefix=/usr pynvim
 
+#nix + proot and tectonic
 curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix
 curl -L https://proot.gitlab.io/proot/bin/proot > /usr/bin/proot
 curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net |sh
@@ -33,12 +37,15 @@ chmod +x /usr/bin/ne
 chmod +x /usr/bin/nenv
 chmod +x /usr/bin/nix-index
 
+#Add Flathub
 mkdir -p /usr/etc/flatpak/remotes.d
 wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
 
+#Binaries for services
 chmod +x /usr/libexec/flatpak-manager
 chmod +x /usr/libexec/topgrade-setup
 
+#systemd
 systemctl enable com.system76.Scheduler.service
 systemctl enable dconf-update.service
 systemctl enable flatpak-manager.service
@@ -47,15 +54,18 @@ systemctl enable tailscaled.service
 systemctl --global enable topgrade.timer
 systemctl --global enable topgrade-setup.service
 
+#Fonts
 mkdir -p /usr/share/fonts/Noto
 curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.tar.xz
 tar -xf Noto.tar.xz --directory /usr/share/fonts/Noto/
 rm -rf Noto.tar.xz
 
+fc-cache -f -v
+
+#Themes
 mkdir -p /usr/share/icons
 curl -OL https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Modern-Classic.tar.xz
 tar -xf Bibata-Modern-Classic.tar.xz --directory /usr/share/icons/
 rm -rf Bibata-Modern-Classic.tar.xz
-fc-cache -f -v
 
 glib-compile-schemas /usr/share/glib-2.0/schemas
