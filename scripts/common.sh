@@ -51,4 +51,9 @@ curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.t
 tar -xf Noto.tar.xz --directory /usr/share/fonts/Noto
 rm -rf Noto.tar.xz
 
+mkdir -p /usr/share/icons
+curl -OL https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Modern-Classic.tar.xz
+tar -xf Bibata-Modern-Classic.tar.xz --directory /usr/share/fonts
+rm -rf Bibata-Modern-Classic.tar.xz
+
 glib-compile-schemas /usr/share/glib-2.0/schemas
