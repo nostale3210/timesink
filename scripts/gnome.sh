@@ -4,6 +4,7 @@ set -oue pipefail
 
 rpm-ostree install \
     gnome-shell-extension-system76-scheduler \
+    gnome-tweaks \
     nautilus-python
 rpm-ostree override remove \
     gnome-terminal-nautilus \
