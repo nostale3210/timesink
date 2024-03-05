@@ -29,9 +29,7 @@ jobs:
         # See https://github.com/ublue-os/main/blob/main/.github/workflows/build.yml#L21
         # This example uses this approach, because the variables of a build
         # are configurable in the Containerfile, and that is easier to grasp when starting out.
-        containerfile: [Containerfile.timesink,
-          Containerfile.timesink-nvidia,
-          Containerfile.timesink-gnome-nonvidia,
+        containerfile: [Containerfile.timesink-gnome-nonvidia,
           Containerfile.timesink-gnome-nvidia]
 
     steps: 
