@@ -36,3 +36,5 @@ rpm-ostree override replace \
     --experimental \
     --from repo=copr:copr.fedorainfracloud.org:gloriouseggroll:nvidia-explicit-sync \
     xorg-x11-server-Xwayland
+
+sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/_copr_gloriouseggroll-nvidia-explicit-sync.repo

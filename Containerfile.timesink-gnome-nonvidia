@@ -12,5 +12,7 @@ RUN /tmp/scripts/amdel.sh
 
 RUN /tmp/scripts/gnome.sh
 
+RUN /tmp/scripts/disable-rpmfusion.sh
+
 RUN rm -rf /tmp/* /var/* && \
     ostree container commit
