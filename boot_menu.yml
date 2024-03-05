@@ -5,3 +5,5 @@ ublue_variants:
       - label: timesink
       - label: timesink-nvidia
       - label: timesink-kde-nvidia
+      - label: timesink-gnome-nvidia
+      - label: timesink-gnome-nonvidia
