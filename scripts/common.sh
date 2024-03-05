@@ -9,6 +9,7 @@ chmod 1777 /tmp /var/tmp
 #add repos
 wget https://copr.fedorainfracloud.org/coprs/kylegospo/system76-scheduler/repo/fedora-$(rpm -E %fedora)/kylegospo-system76-scheduler-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_kylegospo-system76-scheduler.repo
 wget https://pkgs.tailscale.com/stable/fedora/tailscale.repo -O /etc/yum.repos.d/tailscale.repo
+sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/fedora-cisco-openh264.repo
 
 #packages for all images
 rpm-ostree install \
@@ -73,4 +74,3 @@ rm -rf Bibata-Modern-Classic.tar.xz
 glib-compile-schemas /usr/share/glib-2.0/schemas
 
 sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/tailscale.repo
-sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/fedora-cisco-openh264.repo
