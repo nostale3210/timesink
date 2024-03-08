@@ -35,6 +35,8 @@ chmod +x /usr/bin/ne
 chmod +x /usr/bin/nenv
 chmod +x /usr/bin/nix-index
 
+chmod a+r /usr/etc/udev/rules.d/51-android.rules
+
 #Add Flathub
 mkdir -p /usr/etc/flatpak/remotes.d
 wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
