@@ -7,7 +7,7 @@ no_retry = false
 cleanup = true
 
 [commands]
-"Static Nix" = 'nx profile upgrade ".*"'
+"Static Nix" = "nx profile upgrade --all"
 
 [linux]
 rpm_ostree = true
