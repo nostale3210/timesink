@@ -8,6 +8,7 @@ chmod 1777 /tmp /var/tmp
 
 #packages for all images
 rpm-ostree install \
+    distrobox \
     fastfetch \
     neovim \
     papirus-icon-theme \
@@ -37,11 +38,11 @@ chmod +x /usr/bin/nix-index
 
 chmod a+r /usr/etc/udev/rules.d/51-android.rules
 
-#Add Flathub
+#add Flathub
 mkdir -p /usr/etc/flatpak/remotes.d
 wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d
 
-#Binaries for services
+#binaries for services
 chmod +x /usr/libexec/flatpak-manager
 chmod +x /usr/libexec/topgrade-setup
 
@@ -54,7 +55,7 @@ systemctl enable tailscaled.service
 systemctl --global enable topgrade.timer
 systemctl --global enable topgrade-setup.service
 
-#Fonts
+#fonts
 mkdir -p /usr/share/fonts/Noto
 curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.tar.xz
 tar -xf Noto.tar.xz --directory /usr/share/fonts/Noto/
@@ -62,7 +63,7 @@ rm -rf Noto.tar.xz
 
 fc-cache -f -v
 
-#Themes
+#themes
 mkdir -p /usr/share/icons
 curl -OL https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Modern-Classic.tar.xz
 tar -xf Bibata-Modern-Classic.tar.xz --directory /usr/share/icons/
