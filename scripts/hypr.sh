@@ -18,13 +18,11 @@ rpm-ostree install \
     wireplumber \
     bluez \
     bluez-tools \
-    blueberry \
+    blueman \
     pipewire-pulseaudio \
     pipewire-alsa \
     network-manager-applet \
     NetworkManager \
-    qt5-wayland \
-    qt6-wayland \
     qt5ct \
     qt6ct \
     waybar \
