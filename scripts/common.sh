@@ -22,7 +22,7 @@ rpm-ostree override remove \
 
 pip install --prefix=/usr topgrade
 pip install --prefix=/usr pynvim
-pip install --prefix=/usr dbus-python
+#pip install --prefix=/usr dbus-python
 
 #nix + proot and tectonic
 curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix
