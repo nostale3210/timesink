@@ -4,4 +4,5 @@ ublue_variants:
     flavors:
       - label: timesink-gnome-nvidia
       - label: timesink-gnome-nonvidia
+      - label: timesink-hyprland-nvidia
       - label: timesink-hyprland-nonvidia

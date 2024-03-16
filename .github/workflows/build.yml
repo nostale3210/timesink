@@ -31,7 +31,8 @@ jobs:
         # are configurable in the Containerfile, and that is easier to grasp when starting out.
         containerfile: [Containerfile.timesink-gnome-nonvidia,
           Containerfile.timesink-gnome-nvidia,
-          Containerfile.timesink-hyprland-nonvidia]
+          Containerfile.timesink-hyprland-nonvidia,
+          Containerfile.timesink-hyprland-nvidia]
 
     steps: 
       - name: Checkout repo
