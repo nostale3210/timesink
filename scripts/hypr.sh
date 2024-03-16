@@ -44,13 +44,5 @@ rpm-ostree install \
     thunar-archive-plugin \
     file-roller
 
-rpm-ostree install \
-    gstreamer1-plugin-libav \
-    gstreamer1-plugins-bad-free-extras \
-    gstreamer1-plugins-ugly \
-    gstreamer1-vaapi \
-    steam-devices \
-    ffmpeg
-
 systemctl enable bluetooth.service
 systemctl enable sddm.service
