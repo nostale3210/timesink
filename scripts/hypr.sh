@@ -23,7 +23,6 @@ rpm-ostree install \
     pipewire-alsa \
     network-manager-applet \
     NetworkManager \
-    dbus-devel \
     qt5-wayland \
     qt6-wayland \
     qt5ct \

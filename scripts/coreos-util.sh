@@ -3,4 +3,5 @@
 set -oue pipefail
 
 rpm-ostree install \
+    dbus-devel \
     wget
