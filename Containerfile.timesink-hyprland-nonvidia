@@ -4,6 +4,8 @@ COPY files/ /
 COPY scripts/ /tmp/scripts
 
 RUN chmod +x /tmp/scripts/*
+RUN /tmp/scripts/core.sh
+
 RUN /tmp/scripts/add-repos.sh
 
 RUN /tmp/scripts/common.sh
