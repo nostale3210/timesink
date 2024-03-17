@@ -23,6 +23,15 @@ rpm-ostree install \
     pipewire-alsa \
     network-manager-applet \
     NetworkManager \
+    NetworkManager-openvpn \
+    NetworkManager-pptp \
+    NetworkManager-strongswan \
+    NetworkManager-vpnc \
+    NetworkManager-iodine \
+    NetworkManager-libreswan \
+    NetworkManager-ssh \
+    NetworkManager-sstp \
+    NetworkManager-l2tp \
     qt5ct \
     qt6ct \
     waybar \
