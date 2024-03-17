@@ -29,6 +29,7 @@ rpm-ostree install \
     pamixer \
     pavucontrol \
     polkit-gnome \
+    gnome-keyring \
     qt \
     wlogout \
     xdg-user-dirs \
