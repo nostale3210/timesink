@@ -57,6 +57,7 @@ rpm-ostree install \
     thunar-archive-plugin \
     file-roller \
     adwaita-qt5 \
+    adwaita-qt6 \
     qadwaitadecorations-qt5 \
     adw-gtk3-theme
 
