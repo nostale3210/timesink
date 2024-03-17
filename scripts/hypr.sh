@@ -47,7 +47,6 @@ rpm-ostree install \
     tumbler \
     thunar-archive-plugin \
     file-roller \
-    lxappearance \
     adwaita-qt5 \
     qadwaitadecorations-qt5 \
     adw-gtk3-theme
