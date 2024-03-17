@@ -52,5 +52,9 @@ rpm-ostree install \
     qadwaitadecorations-qt5 \
     adw-gtk3-theme
 
+chmod +x /usr/libexec/dotfile-manager
+
 systemctl enable bluetooth.service
 systemctl enable sddm.service
+
+systemctl --global enable dotfile-manager.service

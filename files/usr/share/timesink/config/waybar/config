@@ -1,0 +1,80 @@
+{
+	"position": "top",
+	"height": 30,
+	"layer": "top",
+	"spacing": 5,
+
+	"modules-left": ["hyprland/workspaces", "hyprland/window"],
+	"modules-center": ["clock", "mpris"],
+	"modules-right": ["tray", "cpu", "wireplumber", "network", "idle_inhibitor", "custom/power"],	
+
+	"keyboard-state": {
+		"numlock": true,
+		"capslock": true,
+		"format": "{name}",
+	},
+
+	"tray": {
+		"icon-size": 21,
+		"spacing": 10,
+	},
+
+	"clock": {
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"format-alt": "{:%Y-%m-%d}",
+	},
+
+	"cpu": {
+		"format": "{usage}% ",
+		"tooltip": false,
+	},
+
+	"wireplumber": {
+		"format": "{volume}% {icon}",
+		"format-muted": "",
+		"on-click": "pavucontrol",
+        "format-icons": ["", "", ""],
+		"max-volume": 100,
+		"scroll-step": 2,
+	},
+
+	"network": {
+		"interface": "wlp3s0f0u7",
+		"format": "{ifname}",
+		"format-wifi": "{essid} ({signalStrength}%) ",
+		"format-ethernet": "{ipaddr}/{cidr} 󰊗",
+		"format-disconnected": "", //An empty format will hide the module.
+		"tooltip-format": "{ifname} via {gwaddr} 󰊗",
+		"tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+		"tooltip-format-ethernet": "{ifname} ",
+		"tooltip-format-disconnected": "Disconnected",
+		"max-length": 50,
+		"on-click": "nm-connection-editor",
+	},
+
+	"mpris": {
+		"format": "{player_icon} {dynamic}",
+		"format-paused": "{status_icon} <i>{dynamic}</i>",
+		"player-icons": {
+			"default": "▶",
+			"mpv": "🎵"
+		},
+		"status-icons": {
+			"paused": "⏸"
+		},
+		// "ignored-players": ["firefox"]
+	},
+
+    "idle_inhibitor": {
+        "format": "{icon} ",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "custom/power": {
+        "format": "  ",
+        "on-click": "wlogout"
+    },
+}
