@@ -37,6 +37,9 @@ rpm-ostree install \
     gnome-disk-utility \
     udiskie \
     sddm \
+    qt5-qtgraphicaleffects \
+    qt5-qtquickcontrols2 \
+    qt5-qtsvg \
     ffmpegthumbnailer \
     Thunar \
     thunar-volman \
