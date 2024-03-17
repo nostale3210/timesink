@@ -46,7 +46,11 @@ rpm-ostree install \
     thunar-volman \
     tumbler \
     thunar-archive-plugin \
-    file-roller
+    file-roller \
+    lxappearance \
+    adwaita-qt5 \
+    qadwaitadecorations-qt5 \
+    adw-gtk3-theme
 
 systemctl enable bluetooth.service
 systemctl enable sddm.service
