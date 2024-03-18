@@ -39,6 +39,7 @@ rpm-ostree install \
     pavucontrol \
     polkit-gnome \
     gnome-keyring \
+    libsecret \
     qt \
     wlogout \
     xdg-user-dirs \
@@ -66,4 +67,5 @@ chmod +x /usr/libexec/dotfile-manager
 systemctl enable bluetooth.service
 systemctl enable sddm.service
 
+systemctl --global enable gnome-keyring-daemon.service
 systemctl --global enable dotfile-manager.service
