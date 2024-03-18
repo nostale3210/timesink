@@ -60,10 +60,17 @@ rpm-ostree install \
     adwaita-qt5 \
     adwaita-qt6 \
     qadwaitadecorations-qt5 \
-    adw-gtk3-theme
+    adw-gtk3-theme \
+    tuned \
+    tuned-ppd \
+    tuned-utils \
+    tuned-switcher \
+    tuned-profiles-atomic \
+    tuned-profiles-cpu-partitioning
 
 chmod +x /usr/libexec/dotfile-manager
 
+systemctl enable tuned.service
 systemctl enable bluetooth.service
 systemctl enable sddm.service
 
