@@ -14,7 +14,7 @@ if [[ -f $VER_FILE && $VER = $VER_RAN ]]; then
     exit 0
 fi
 
-rm -rf ~/.config/hypr ~/.config/kitty ~/.config/mako ~/.config/waybar ~/.config/wofi
+rm -rf ~/.config/hypr ~/.config/kitty ~/.config/mako ~/.config/waybar ~/.config/wofi ~/.config/wlogout
 
 cp -r /usr/share/timesink/config/hypr ~/.config/
 cp -r /usr/share/timesink/config/kitty ~/.config/
