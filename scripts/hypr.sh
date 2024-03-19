@@ -11,7 +11,7 @@ rpm-ostree install \
     hyprcursor \
     xdg-desktop-portal-hyprland \
     xdg-desktop-portal-gtk \
-    aylurs-gtk-shell \
+    
     wofi \
     kitty \
     mako \
@@ -67,7 +67,8 @@ rpm-ostree install \
     tuned-utils \
     tuned-switcher \
     tuned-profiles-atomic \
-    tuned-profiles-cpu-partitioning
+    tuned-profiles-cpu-partitioning \
+    xwaylandvideobridge
 
 chmod +x /usr/libexec/dotfile-manager
 
