@@ -16,10 +16,11 @@ fi
 
 rm -rf ~/.config/hypr ~/.config/kitty ~/.config/mako ~/.config/waybar ~/.config/wofi
 
-cp -r /usr/etc/timesink/config/hypr ~/.config/
-cp -r /usr/etc/timesink/config/kitty ~/.config/
-cp -r /usr/etc/timesink/config/mako ~/.config/
-cp -r /usr/etc/timesink/config/waybar ~/.config/
-cp -r /usr/etc/timesink/config/wofi ~/.config/
+cp -r /usr/share/timesink/config/hypr ~/.config/
+cp -r /usr/share/timesink/config/kitty ~/.config/
+cp -r /usr/share/timesink/config/mako ~/.config/
+cp -r /usr/share/timesink/config/waybar ~/.config/
+cp -r /usr/share/timesink/config/wofi ~/.config/
+cp -r /usr/share/timesink/config/wlogout ~/.config/
 
 echo $VER > $VER_FILE
