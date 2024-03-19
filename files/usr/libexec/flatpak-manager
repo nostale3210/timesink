@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 VER=19
-VER_FILE="/etc/timesink/ver"
+VER_FILE=/etc/timesink/ver
 VER_RAN=$(cat $VER_FILE)
 
 if [[ -f $VER_FILE && $VER = $VER_RAN ]]; then

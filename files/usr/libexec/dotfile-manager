@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 VER=1
-VER_FILE="~/.config/ver-dot"
+VER_FILE=~/.config/ver-dot
 
 if [[ ! -f $VER_FILE ]]; then
     touch $VER_FILE
