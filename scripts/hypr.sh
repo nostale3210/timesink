@@ -9,6 +9,7 @@ rpm-ostree install \
     hypridle \
     hyprlock \
     hyprcursor \
+    hyprshot \
     xdg-desktop-portal-hyprland \
     xdg-desktop-portal-gtk \
     wofi \
@@ -40,6 +41,7 @@ rpm-ostree install \
     polkit-gnome \
     gnome-keyring \
     libsecret \
+    seahorse \
     qt \
     wlogout \
     xdg-user-dirs \
