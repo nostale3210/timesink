@@ -1,13 +1,9 @@
 [Unit]
-Description=Manage system flatpaks
-Wants=network-online.target
+Description=Manage default dotfiles
 
 [Service]
 Type=oneshot
 ExecStart=/usr/libexec/dotfile-manager
-Restart=on-failure
-RestartSec=30
-StartLimitInterval=0
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
