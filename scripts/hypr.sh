@@ -11,7 +11,6 @@ rpm-ostree install \
     hyprcursor \
     xdg-desktop-portal-hyprland \
     xdg-desktop-portal-gtk \
-    
     wofi \
     kitty \
     mako \
