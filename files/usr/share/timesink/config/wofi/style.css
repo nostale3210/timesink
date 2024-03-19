@@ -52,16 +52,17 @@
 @define-color	crust-rgb  rgb(17, 17, 27);
 
 * {
-  font-family: 'Inconsolata Nerd Font', monospace;
+  font-family: 'NotoSansM Nerd Font', monospace;
   font-size: 14px;
 }
 
 /* Window */
 window {
+  opacity: 0.9;
   margin: 0px;
   padding: 10px;
   border: 0.16em solid @lavender;
-  border-radius: 0.1em;
+  border-radius: 10px;
   background-color: @base;
   animation: slideIn 0.5s ease-in-out both;
 }
@@ -93,7 +94,7 @@ window {
   }
 
   100% {
-     opacity: 1;
+     opacity: 0.9;
   }
 }
 
@@ -153,6 +154,7 @@ window {
 /* Selected Entry */
 #entry:selected {
   border: 0.11em solid @lavender;
+  border-radius: 10px;
 }
 
 #entry:selected #text {

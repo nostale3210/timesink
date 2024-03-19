@@ -1,5 +1,7 @@
+@import "mocha.css";
+
 #waybar {
-    font-family: "Fira Sans SemiBold";
+    font-family: "NotoSans Nerd Font SemiBold";
     font-size: 13px;
 }
 
@@ -13,12 +15,12 @@ window#waybar {
     box-shadow: none;
     text-shadow: none;
     transition-duration: 0s;
-    color: rgba(217, 216, 216, 1);
-    background: rgba(0, 0, 0, 0.87);
+    color: @text;
+    background: shade(@base, 0.9);
 }
 
 window#waybar.solo {
-    background: rgb(35, 31, 32);
+    background: @base;
     /* font-family: "Ubuntu Medium";
     font-size: 15px; */
 }
@@ -33,29 +35,29 @@ window#waybar.empty {
 
 #workspaces button {
     padding: 0 8px;
-    color: rgba(217, 216, 216, 0.4);
-    border: 3px solid rgba(217, 216, 216, 0);
+    color: alpha(@text, 0.4);
+    border: 3px solid alpha(@crust, 0);
     border-radius: 10px;
 }
 
 #workspaces button.visible {
     /* color: rgba(217, 216, 216, 1); */
-    color: lightcoral;
+    color: @surface0;
 }
 
 #workspaces button.active {
-    border-top: 3px solid rgba(217, 216, 216, 1);
-    border-bottom: 3px solid rgba(217, 216, 216, 1);
+    border-top: 3px solid @green;
+    border-bottom: 3px solid @green;
 }
 
 #workspaces button.active.current_output {
-    color: orange;
-    border-color: orange;
+    color: @peach;
+    border-color: @peach;
 }
 
 #workspaces button.urgent {
-    background-color: #943432;
-    color: white;
+    background-color: @maroon;
+    color: @rosewater;
 }
 
 #workspaces button:hover {
@@ -67,17 +69,17 @@ window#waybar.empty {
 /* Repeat style here to ensure properties are overwritten as there's no !important and button:hover above resets the colour */
 
 #workspaces button.active {
-    color: white;
+    color: @text;
 }
 
 #pulseaudio {
     /* font-size: 26px; */
-    color:khaki;
+    color: @peach;
 }
 
 #custom-cpu_speed {
     min-width: 82px;
-    color:lightsteelblue;
+    color: @text;
 }
 
 #custom-recorder {
@@ -87,7 +89,7 @@ window#waybar.empty {
 }
 
 #custom-powermenu {
-    color:lightcoral;
+    color: @text;
 }
 
 #temperature {
@@ -95,7 +97,7 @@ window#waybar.empty {
 }
 
 #idle_inhibitor {
-    color: powderblue;
+    color: @text;
 }
 
 #language {
