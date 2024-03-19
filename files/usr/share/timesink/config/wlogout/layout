@@ -7,7 +7,7 @@
 {
     "label" : "hibernate",
     "action" : "hyprctl dispatch dpms off && hyprlock",
-    "text" : "Hibernate",
+    "text" : "Screen off + Lock",
     "keybind" : "h"
 }
 {

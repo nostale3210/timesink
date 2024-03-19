@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
 VER=1
-VER_FILE="/etc/timesink/ver-dot"
+VER_FILE="~/.config/ver-dot"
+
+if [[ ! -f $VER_FILE ]]; then
+    touch $VER_FILE
+fi
+
 VER_RAN=$(cat $VER_FILE)
 
 if [[ -f $VER_FILE && $VER = $VER_RAN ]]; then
