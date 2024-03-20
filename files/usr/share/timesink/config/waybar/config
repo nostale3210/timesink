@@ -6,7 +6,7 @@
 
 	"modules-left": ["hyprland/workspaces", "hyprland/window"],
 	"modules-center": ["clock", "mpris"],
-	"modules-right": ["tray", "cpu", "wireplumber", "network", "idle_inhibitor", "custom/power"],	
+	"modules-right": ["tray", "cpu", "wireplumber", "network", "battery", "idle_inhibitor", "custom/power"],	
 
 	"keyboard-state": {
 		"numlock": true,
@@ -40,7 +40,7 @@
 	},
 
 	"network": {
-		"interface": "wlp3s0f0u7",
+		// "interface": "wlp3s0f0u7",
 		"format": "{ifname}",
 		"format-wifi": "{essid} ({signalStrength}%) ",
 		"format-ethernet": "{ipaddr}/{cidr} 󰊗",
@@ -66,6 +66,17 @@
 		},
 		// "ignored-players": ["firefox"]
 	},
+
+    "battery": {
+        "bat": "BAT1",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15,
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["󰂃", "󰁼", "󰁾", "󰂀", "󰁹"],
+    },
 
     "idle_inhibitor": {
         "format": "{icon} ",

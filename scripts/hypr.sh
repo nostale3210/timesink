@@ -13,7 +13,6 @@ rpm-ostree install \
     xdg-desktop-portal-hyprland \
     xdg-desktop-portal-gtk \
     wofi \
-    kitty \
     foot \
     mako \
     pipewire \
