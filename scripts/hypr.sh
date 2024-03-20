@@ -71,6 +71,9 @@ rpm-ostree install \
     tuned-profiles-cpu-partitioning \
     xwaylandvideobridge
 
+rpm-ostree uninstall \
+    kitty
+
 chmod +x /usr/libexec/dotfile-manager
 
 systemctl enable tuned.service
