@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VER=3
+VER=4
 VER_FILE=~/.config/ver-dot
 
 if [[ ! -f $VER_FILE ]]; then
@@ -14,7 +14,7 @@ if [[ -f $VER_FILE && $VER = $VER_RAN ]]; then
     exit 0
 fi
 
-rm -rf ~/.config/hypr ~/.config/foot ~/.config/mako ~/.config/waybar ~/.config/wofi ~/.config/wlogout
+rm -rf ~/.config/hypr ~/.config/foot ~/.config/mako ~/.config/waybar ~/.config/wofi ~/.config/wlogout ~/.config/zellij
 
 cp -r /usr/share/timesink/config/hypr ~/.config/
 cp -r /usr/share/timesink/config/foot ~/.config/
@@ -22,5 +22,6 @@ cp -r /usr/share/timesink/config/mako ~/.config/
 cp -r /usr/share/timesink/config/waybar ~/.config/
 cp -r /usr/share/timesink/config/wofi ~/.config/
 cp -r /usr/share/timesink/config/wlogout ~/.config/
+cp -r /usr/share/timesink/config/zellij ~/.config/
 
 echo $VER > $VER_FILE
