@@ -14,6 +14,7 @@ rpm-ostree install \
     xdg-desktop-portal-gtk \
     wofi \
     kitty \
+    foot \
     mako \
     pipewire \
     wireplumber \
