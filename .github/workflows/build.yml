@@ -32,7 +32,9 @@ jobs:
         containerfile: [Containerfile.timesink-gnome-nonvidia,
           Containerfile.timesink-gnome-nvidia,
           Containerfile.timesink-hyprland-nonvidia,
-          Containerfile.timesink-hyprland-nvidia]
+          Containerfile.timesink-hyprland-nvidia,
+          Containerfile.timesink-hyprland-core
+        ]
 
     steps: 
       - name: Checkout repo

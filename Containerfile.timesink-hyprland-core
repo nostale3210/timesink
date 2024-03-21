@@ -1,0 +1,22 @@
+FROM quay.io/fedora/coreos:testing
+
+COPY files/ /
+COPY scripts/ /tmp/scripts
+
+RUN chmod +x /tmp/scripts/*
+RUN /tmp/scripts/core.sh
+
+RUN /tmp/scripts/add-repos.sh
+
+RUN /tmp/scripts/common.sh
+
+RUN /tmp/scripts/amdel.sh
+
+RUN /tmp/scripts/fusion.sh
+
+RUN /tmp/scripts/hypr.sh
+
+RUN /tmp/scripts/disable-repos.sh
+
+RUN rm -rf /tmp/* /var/* && \
+    ostree container commit
