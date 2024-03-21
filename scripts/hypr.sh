@@ -73,7 +73,9 @@ rpm-ostree install \
 
 rpm-ostree uninstall \
     kitty \
-    kitten
+    kitty-kitten \
+    kitty-shell-integration \
+    kitty-terminfo
 
 chmod +x /usr/libexec/dotfile-manager
 
