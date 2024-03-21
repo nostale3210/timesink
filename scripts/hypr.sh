@@ -39,9 +39,10 @@ rpm-ostree install \
     pamixer \
     pavucontrol \
     polkit-gnome \
-    gnome-keyring \
+    kwallet \
+    pam-kwallet \
     libsecret \
-    seahorse \
+    kwalletmanager5 \
     qt \
     wlogout \
     xdg-user-dirs \
