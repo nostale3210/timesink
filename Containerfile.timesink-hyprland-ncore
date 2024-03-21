@@ -2,6 +2,9 @@ FROM quay.io/fedora/fedora-coreos:next
 
 COPY files/ /
 COPY scripts/ /tmp/scripts
+COPY environment /etc
+ADD certs/public_key.der /etc/pki/akmods/certs/public_key.der
+ADD certs/private_key.priv /etc/pki/akmods/private/private_key.priv
 
 RUN chmod +x /tmp/scripts/*
 RUN rpm-ostree install wget
