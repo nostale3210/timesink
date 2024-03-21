@@ -72,7 +72,8 @@ rpm-ostree install \
     xwaylandvideobridge
 
 rpm-ostree uninstall \
-    kitty
+    kitty \
+    kitten
 
 chmod +x /usr/libexec/dotfile-manager
 
