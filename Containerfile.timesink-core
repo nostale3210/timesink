@@ -2,9 +2,6 @@ FROM quay.io/fedora/fedora-coreos:testing-devel
 
 COPY files/ /
 COPY scripts/ /tmp/scripts
-COPY environment /etc
-ADD certs/public_key.der /etc/pki/akmods/certs/public_key.der
-ADD certs/private_key.priv /etc/pki/akmods/private/private_key.priv
 
 RUN chmod +x /tmp/scripts/*
 RUN rpm-ostree install wget
@@ -15,7 +12,7 @@ RUN /tmp/scripts/core.sh
 
 RUN /tmp/scripts/common.sh
 
-RUN /tmp/scripts/nvidia.sh
+RUN /tmp/scripts/amdel.sh
 
 RUN /tmp/scripts/hypr.sh
 
