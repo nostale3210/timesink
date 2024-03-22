@@ -24,16 +24,18 @@ pip install --prefix=/usr topgrade
 pip install --prefix=/usr pynvim
 #pip install --prefix=/usr dbus-python
 
-#nix + proot, zellij and tectonic
+#nix + proot, zellij and tectonic (+ollama for fun)
 curl -L https://hydra.nixos.org/job/nix/master/buildStatic.x86_64-linux/latest/download-by-type/file/binary-dist > /usr/bin/nix
 curl -L https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz > zellij.tar.gz
 tar -xf zellij.tar.gz --directory /usr/bin/
 curl -L https://proot.gitlab.io/proot/bin/proot > /usr/bin/proot
 curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net |sh
+curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/bin/ollama
 chmod +x tectonic && mv tectonic /usr/bin/tectonic
 chmod +x /usr/bin/nix
 chmod +x /usr/bin/zellij
 chmod +x /usr/bin/proot
+chmod +x /usr/bin/ollama
 chmod +x /usr/bin/nx
 chmod +x /usr/bin/ne
 chmod +x /usr/bin/nenv
