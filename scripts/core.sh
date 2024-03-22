@@ -26,4 +26,8 @@ rpm-ostree install \
     gstreamer1-plugins-ugly \
     gstreamer1-vaapi \
     steam-devices \
+    git-core \
+    libinput \
+    flatpak \
+    firefox \
     ffmpeg

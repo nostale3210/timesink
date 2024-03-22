@@ -6,3 +6,5 @@ ublue_variants:
       - label: timesink-gnome-nonvidia
       - label: timesink-hyprland-nvidia
       - label: timesink-hyprland-nonvidia
+      - label: timesink-core
+      - label: timesink-ncore
