@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-coreos:stable
+FROM quay.io/fedora/fedora-coreos:testing-devel
 
 COPY files/ /
 COPY scripts/ /tmp/scripts
@@ -10,6 +10,8 @@ RUN chmod +x /tmp/scripts/*
 RUN rpm-ostree install wget
 
 RUN /tmp/scripts/add-repos.sh
+
+RUN /tmp/scripts/core.sh
 
 RUN /tmp/scripts/nvidia.sh
 
