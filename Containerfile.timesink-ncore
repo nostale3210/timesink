@@ -13,7 +13,13 @@ RUN /tmp/scripts/add-repos.sh
 
 RUN /tmp/scripts/core.sh
 
+RUN /tmp/scripts/common.sh
+
+RUN /tmp/scripts/fusion.sh
+
 RUN /tmp/scripts/nvidia.sh
+
+RUN /tmp/scripts/hypr.sh
 
 RUN /tmp/scripts/disable-repos.sh
 
