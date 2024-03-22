@@ -46,6 +46,7 @@ rpm-ostree install \
     qt \
     wlogout \
     xdg-user-dirs \
+    xdg-user-dirs-gtk \
     xdg-utils \
     gnome-system-monitor \
     gnome-disk-utility \
