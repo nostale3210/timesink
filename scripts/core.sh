@@ -8,6 +8,7 @@ rpm-ostree override remove \
     clevis \
     clevis-luks \
     clevis-systemd \
+    clevis-dracut \
     coreos-installer \
     coreos-installer-bootinfra \
     ignition \
