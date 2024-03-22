@@ -33,9 +33,7 @@ jobs:
           Containerfile.timesink-gnome-nonvidia,
           Containerfile.timesink-gnome-nvidia,
           Containerfile.timesink-hyprland-nonvidia,
-          Containerfile.timesink-hyprland-nvidia,
-          Containerfile.timesink-core,
-          Containerfile.timesink-ncore
+          Containerfile.timesink-hyprland-nvidia
         ]
 
     steps: 
