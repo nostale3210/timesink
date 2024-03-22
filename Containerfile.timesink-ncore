@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-coreos:testing-devel
+FROM quay.io/fedora/fedora-coreos:stable
 
 COPY files/ /
 COPY scripts/ /tmp/scripts
