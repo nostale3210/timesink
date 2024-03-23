@@ -61,10 +61,10 @@ systemctl --global enable topgrade.timer
 systemctl --global enable topgrade-setup.service
 
 #fonts
-mkdir -p /usr/share/fonts/Noto
-curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Noto.tar.xz
-tar -xf Noto.tar.xz --directory /usr/share/fonts/Noto/
-rm -rf Noto.tar.xz
+mkdir -p /usr/share/fonts/Symbols
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.tar.xz
+tar -xf NerdFontsSymbolsOnly.tar.xz --directory /usr/share/fonts/Symbols/
+rm -rf NerdFontsSymbolsOnly.tar.xz
 
 fc-cache -f -v
 
