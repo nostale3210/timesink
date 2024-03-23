@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VER=4
+VER=5
 VER_FILE=~/.config/ver-dot
 
 if [[ ! -f $VER_FILE ]]; then
