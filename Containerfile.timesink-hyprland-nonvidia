@@ -1,20 +1,21 @@
 FROM quay.io/fedora-ostree-desktops/base:39
 
 COPY files/ /
-COPY scripts/ /tmp/scripts
+RUN --mount=type=tmpfs,tmpfs-size=512M,destination=/tmpfs
+COPY scripts/ /tmpfs/scripts
 
-RUN chmod +x /tmp/scripts/*
-RUN /tmp/scripts/add-repos.sh
+RUN chmod +x /tmpfs/scripts/*
+RUN /tmpfs/scripts/add-repos.sh
 
-RUN /tmp/scripts/common.sh
+RUN /tmpfs/scripts/common.sh
 
-RUN /tmp/scripts/amdel.sh
+RUN /tmpfs/scripts/amdel.sh
 
-RUN /tmp/scripts/fusion.sh
+RUN /tmpfs/scripts/fusion.sh
 
-RUN /tmp/scripts/hypr.sh
+RUN /tmpfs/scripts/hypr.sh
 
-RUN /tmp/scripts/disable-repos.sh
+RUN /tmpfs/scripts/disable-repos.sh
 
 RUN rm -rf /tmp/* /var/* && \
     ostree container commit
