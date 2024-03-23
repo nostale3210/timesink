@@ -66,6 +66,11 @@ curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFo
 tar -xf NerdFontsSymbolsOnly.tar.xz --directory /usr/share/fonts/Symbols/
 rm -rf NerdFontsSymbolsOnly.tar.xz
 
+mkdir -p /usr/share/fonts/Lilex
+curl -OL https://github.com/mishamyrt/Lilex/releases/latest/download/Lilex.zip
+unzip -j Lilex.zip ttf/* -d /usr/share/fonts/Lilex/
+rm -rf Lilex.zip
+
 fc-cache -f -v
 
 #themes
