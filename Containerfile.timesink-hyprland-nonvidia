@@ -1,7 +1,7 @@
 FROM quay.io/fedora-ostree-desktops/base:39
 
 COPY files/ /
-RUN --mount type=tmpfs,destination=/run
+RUN --mount=type=tmpfs,destination=/run
 COPY scripts/ /run/scripts
 
 RUN chmod +x /run/scripts/*
