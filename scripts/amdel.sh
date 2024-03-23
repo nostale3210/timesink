@@ -9,3 +9,5 @@ rpm-ostree override remove \
     mesa-va-drivers \
     --install mesa-va-drivers-freeworld \
     --install mesa-vdpau-drivers-freeworld
+
+/tmp/scripts/cleanup.sh

@@ -16,3 +16,5 @@ rpm-ostree install \
     rpmfusion-nonfree-release \
     --uninstall rpmfusion-free-release \
     --uninstall rpmfusion-nonfree-release
+
+/tmp/scripts/cleanup.sh

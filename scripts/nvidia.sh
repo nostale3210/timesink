@@ -34,3 +34,5 @@ rpm-ostree override replace \
     --experimental \
     --from repo=copr:copr.fedorainfracloud.org:gloriouseggroll:nvidia-explicit-sync \
     xorg-x11-server-Xwayland
+
+/tmp/scripts/cleanup.sh

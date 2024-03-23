@@ -17,3 +17,5 @@ rpm-ostree install \
     gstreamer1-plugins-ugly \
     gstreamer1-vaapi \
     steam-devices
+
+/tmp/scripts/cleanup.sh

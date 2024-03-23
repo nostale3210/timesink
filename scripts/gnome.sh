@@ -17,3 +17,5 @@ pip install --prefix=/usr nautilus-open-any-terminal
 sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/org.gnome.Terminal.desktop
 
 glib-compile-schemas /usr/share/glib-2.0/schemas
+
+/tmp/scripts/cleanup.sh

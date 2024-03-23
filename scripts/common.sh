@@ -74,3 +74,5 @@ mkdir -p /usr/share/icons
 curl -OL https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Modern-Classic.tar.xz
 tar -xf Bibata-Modern-Classic.tar.xz --directory /usr/share/icons/
 rm -rf Bibata-Modern-Classic.tar.xz
+
+/tmp/scripts/cleanup.sh

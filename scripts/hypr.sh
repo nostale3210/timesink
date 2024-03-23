@@ -87,3 +87,5 @@ systemctl enable sddm.service
 
 systemctl --global enable gnome-keyring-daemon.service
 systemctl --global enable dotfile-manager.service
+
+/tmp/scripts/cleanup.sh
