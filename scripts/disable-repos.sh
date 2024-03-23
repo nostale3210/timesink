@@ -2,6 +2,7 @@
 
 set -oue pipefail
 
+sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/_copr_che-nerd-fonts.repo
 sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/_copr_gloriouseggroll-nvidia-explicit-sync.repo
 sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/_copr_kylegospo-system76-scheduler.repo
 sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/_copr_solopasha-hyprland.repo
