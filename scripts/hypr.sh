@@ -27,6 +27,7 @@ rpm-ostree install \
     gnome-keyring \
     gnome-keyring-pam \
     gnome-system-monitor \
+    gvfs-mtp \
     hyprcursor \
     hypridle \
     hyprland \
