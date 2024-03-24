@@ -21,33 +21,27 @@ jobs:
       id-token: write # required for logging in to github
     strategy:
       fail-fast: false
-      matrix:
-        image_name:
-          - silverblue
-          - hyprland
-        major_version: [39]
-        build_target: [nonvidia, nvidia]
+      matrix: # all combinations of these variables are built
+        # !!! This is the most important section
+        # Here you decide what to build. 
+        # For multi-image projects, it is common to only use one Containerfile
+        # and use matrix variables to pick between major versions and desktop editions.
+        # See https://github.com/ublue-os/main/blob/main/.github/workflows/build.yml#L21
+        # This example uses this approach, because the variables of a build
+        # are configurable in the Containerfile, and that is easier to grasp when starting out.
+        containerfile: [
+          Containerfile.timesink-gnome-nonvidia,
+          Containerfile.timesink-gnome-nvidia,
+          Containerfile.timesink-hyprland-nonvidia,
+          Containerfile.timesink-hyprland-nvidia
+        ]
 
     steps: 
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Gather environment variables
-        shell: bash
-        run: |
-          echo "SOURCE_ORG=fedora-ostree-desktops" >> $GITHUB_ENV
-          if grep "${{ matrix.image_name }}" <<< "silverblue"; then
-            echo "SOURCE_IMAGE=${{ matrix.image_name }}" >> $GITHUB_ENV
-          else
-            echo "SOURCE_IMAGE=base" >> $GITHUB_ENV
-          fi
-
-          if [[ "${{ matix.build_target }}" == "nvidia" ]]; then
-            export IMAGE_FLAVOR=nvidia
-          else
-            export IMAGE_FLAVOR=nonvidia
-          fi
-          echo "IMAGE_NAME=timesink-${{ matrix.image_name }}-${IMAGE_FLAVOR}" >> $GITHUB_ENV
+        run: echo "IMAGE_NAME=$(echo ${{ matrix.containerfile }} | cut -d . -f 2)" >> $GITHUB_ENV
 
       - name: Image Metadata
         uses: docker/metadata-action@v5
@@ -75,14 +69,6 @@ jobs:
           
           echo "TAGS=${TAGS[*]}" >> $GITHUB_OUTPUT
 
-      - name: Pull base image
-        uses: Wandalen:wretry.action@v2.1.0
-        with:
-          attempt_limit: 3
-          attempt_delay: 15000
-          command: |
-            podman pull quay.io/${{ env.SOURCE_ORG }}/${{ env.SOURCE_IMAGE }}:${{ matrix.major_version }}
-
       - name: Retrieve akmods signing keys
         run: |
           mkdir certs
@@ -93,15 +79,9 @@ jobs:
         id: build_image
         uses: redhat-actions/buildah-build@v2.13
         with:
-          containerfiles: |
-            ./Containerfile
+          containerfiles: "./${{ matrix.containerfile }}" # select which containerfile to build
           image: ${{ env.IMAGE_NAME }} # names the built image
           tags: ${{ steps.generate-tags.outputs.TAGS }} # pulls in tags from previous step
-          build-args: |
-            IMAGE_NAME=${{ matrix.image_name }}
-            SOURCE_ORG=${{ env.SOURCE_ORG }}
-            SOURCE_IMAGE=${{ env.SOURCE_IMAGE }}
-            FEDORA_MAJOR_VERSION=${{ matrix.major_version }}
           labels: ${{ steps.meta.outputs.labels }} # pulls in labels from previous step
           oci: false # don't use OCI metadata format instead of the Docker format (false by default)
 
