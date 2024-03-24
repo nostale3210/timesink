@@ -21,7 +21,7 @@ fi
 SCRIPTS+=("disable-repos")
 
 for script in ${SCRIPTS[@]}; do
-    echo "=====Running script: $script====="
+    echo $'\n\n=====Running script: $script=====\n'
     /scripts/$script.sh;
     /scripts/cleanup.sh $script;
 done
