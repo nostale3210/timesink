@@ -30,6 +30,8 @@ jobs:
         include:
           - major_version: 39
             is_latest_version: true
+            is_stable_version: true
+            is_oldstable_version: false
 
     steps: 
       - name: Checkout repo
@@ -78,6 +80,12 @@ jobs:
           fi
           if [[ "${{ matrix.is_latest_version }}" == "true" ]]; then
             TAGS+=("latest")
+          fi
+          if [[ "${{ matrix.is_stable_version }}" == "true" ]]; then
+            TAGS+=("stable")
+          fi
+          if [[ "${{ matrix.is_oldstable_version }}" == "true" ]]; then
+            TAGS+=("oldstable")
           fi
           echo "Publishing with the following tags: "
           echo "${TAGS[*]}"
