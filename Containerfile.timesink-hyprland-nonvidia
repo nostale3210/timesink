@@ -16,5 +16,5 @@ RUN /scripts/hypr.sh
 
 RUN /scripts/disable-repos.sh
 
-RUN rm -rf /* /var/* /scripts && \
+RUN rm -rf /tmp/* /var/* /scripts && \
     ostree container commit
