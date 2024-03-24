@@ -36,8 +36,7 @@ jobs:
         shell: bash
         run: |
           echo "SOURCE_ORG=fedora-ostree-desktops" >> $GITHUB_ENV
-          echo "IMAGE_DE=${{ matrix.image_name }}" >> $GITHUB_ENV
-          echo "GPU_VENDOR=${{ matrix.build_target }}" >> $GITHUB_ENV
+          
           if grep "${{ matrix.image_name }}" <<< "silverblue"; then
             echo "SOURCE_IMAGE=${{ matrix.image_name }}" >> $GITHUB_ENV
           else
@@ -104,6 +103,8 @@ jobs:
             SOURCE_ORG=${{ env.SOURCE_ORG }}
             SOURCE_IMAGE=${{ env.SOURCE_IMAGE }}
             FEDORA_MAJOR_VERSION=${{ matrix.major_version }}
+            IMAGE_DE=${{ matrix.image_name }}
+            GPU_VENDOR=${{ matrix.build_target }}
           labels: ${{ steps.meta.outputs.labels }} # pulls in labels from previous step
           oci: false # don't use OCI metadata format instead of the Docker format (false by default)
 
