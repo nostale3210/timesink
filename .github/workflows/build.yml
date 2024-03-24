@@ -76,8 +76,9 @@ jobs:
             TAGS+=("${FVER}")
             TAGS+=("${FVER}-$(date +%Y%m%d)")
           fi
-          if [[ "${{ matrix.is_latest_version }}" == "true" ]]
+          if [[ "${{ matrix.is_latest_version }}" == "true" ]]; then
             TAGS+=("latest")
+          fi
           echo "Publishing with the following tags: "
           echo "${TAGS[*]}"
           
