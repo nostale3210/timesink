@@ -1,7 +1,7 @@
 FROM quay.io/fedora-ostree-desktops/base:39
 
 COPY files/ /
-RUN --mount=type=bind,source=./scripts,destination=/scripts
+RUN -v=./scripts/:/scripts
 COPY scripts/ /scripts
 
 RUN chmod +x /scripts/*
