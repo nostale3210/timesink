@@ -1,4 +1,4 @@
-#!//bin/sh
+#!/bin/sh
 
 echo hi
 echo ${GPU_VENDOR}
