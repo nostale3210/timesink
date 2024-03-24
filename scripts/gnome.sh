@@ -2,6 +2,8 @@
 
 set -oue pipefail
 
+echo "-----Installing GNOME specific components-----"
+
 rpm-ostree install \
     adw-gtk3-theme \
     gnome-shell-extension-system76-scheduler \
@@ -18,4 +20,4 @@ sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/appl
 
 glib-compile-schemas /usr/share/glib-2.0/schemas
 
-/scripts/cleanup.sh
+/scripts/cleanup.sh gnome

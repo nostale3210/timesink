@@ -2,6 +2,8 @@
 
 set -oue pipefail
 
+echo "-----Install Hyprland + supplementary programs-----"
+
 rpm-ostree install \
     hyprland \
     hyprpaper \
@@ -88,4 +90,4 @@ systemctl enable sddm.service
 systemctl --global enable gnome-keyring-daemon.service
 systemctl --global enable dotfile-manager.service
 
-/scripts/cleanup.sh
+/scripts/cleanup.sh hyprland

@@ -2,6 +2,8 @@
 
 set -oue pipefail
 
+echo "-----Building & Installing nvidia drivers-----"
+
 rpm-ostree install \
     binutils \
     akmods \
@@ -35,4 +37,4 @@ rpm-ostree override replace \
     --from repo=copr:copr.fedorainfracloud.org:gloriouseggroll:nvidia-explicit-sync \
     xorg-x11-server-Xwayland
 
-/scripts/cleanup.sh
+/scripts/cleanup.sh nvidia

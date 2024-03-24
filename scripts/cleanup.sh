@@ -2,5 +2,6 @@
 
 set -oue pipefail
 
+echo "-----Cleaning up $1-----"
 rm -rf /tmp/* /var/*
 ostree container commit
