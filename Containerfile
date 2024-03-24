@@ -1,6 +1,6 @@
 ARG IMAGE_NAME="${IMAGE_NAME:-silverblue}"
-ARG GPU_VENDOR="${GPU_VENDOR:-nonvidia}"
-ARG IMAGE_DE="${IMAGE_DE:-silverblue}"
+ENV GPU_VENDOR="${GPU_VENDOR:-nonvidia}"
+ENV IMAGE_DE="${IMAGE_DE:-silverblue}"
 ARG SOURCE_IMAGE="${SOURCE_IMAGE:-silverblue}"
 ARG SOURCE_ORG="${SOURCE_ORG:-fedora-ostree-desktops}"
 ARG BASE_IMAGE="quay.io/${SOURCE_ORG}/${SOURCE_IMAGE}"

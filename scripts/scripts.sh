@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+set -oue pipefail
 
 echo hi
 echo ${GPU_VENDOR}
