@@ -2,8 +2,6 @@
 
 set -oue pipefail
 
-echo "-----Installing codecs from rpmfusion-----"
-
 rpm-ostree override remove \
     libavfilter-free \
     libavformat-free \
@@ -19,5 +17,3 @@ rpm-ostree install \
     gstreamer1-plugins-ugly \
     gstreamer1-vaapi \
     steam-devices
-
-#/scripts/cleanup.sh rpmfusion

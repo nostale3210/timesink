@@ -37,6 +37,7 @@ jobs:
         run: |
           echo "SOURCE_ORG=fedora-ostree-desktops" >> $GITHUB_ENV
           echo "IMAGE_DE=${{ matrix.image_name }}" >> $GITHUB_ENV
+          echo "GPU_VENDOR=${{ matrix.build_target }}" >> $GITHUB_ENV
           if grep "${{ matrix.image_name }}" <<< "silverblue"; then
             echo "SOURCE_IMAGE=${{ matrix.image_name }}" >> $GITHUB_ENV
           else
@@ -45,10 +46,8 @@ jobs:
 
           if [[ "${{ matrix.build_target }}" == "nvidia" ]]; then
             export IMAGE_FLAVOR=nvidia
-            echo "IMAGE_FLAVOR=nvidia" >> $GITHUB_ENV
           else
             export IMAGE_FLAVOR=nonvidia
-            echo "IMAGE_FLAVOR=nonvidia" >> $GITHUB_ENV
           fi
           echo "IMAGE_NAME=timesink-${{ matrix.image_name }}-${IMAGE_FLAVOR}" >> $GITHUB_ENV
 

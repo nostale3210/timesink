@@ -2,8 +2,6 @@
 
 set -oue pipefail
 
-echo "-----Building & Installing nvidia drivers-----"
-
 mkdir -p /var/lib/alternatives
 mkdir -p /tmp
 mkdir -p /var/tmp
@@ -41,5 +39,3 @@ rpm-ostree override replace \
     --experimental \
     --from repo=copr:copr.fedorainfracloud.org:gloriouseggroll:nvidia-explicit-sync \
     xorg-x11-server-Xwayland
-
-#/scripts/cleanup.sh nvidia

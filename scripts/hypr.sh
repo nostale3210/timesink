@@ -2,77 +2,75 @@
 
 set -oue pipefail
 
-echo "-----Install Hyprland + supplementary programs-----"
-
 rpm-ostree install \
-    hyprland \
-    hyprpaper \
-    hyprpicker \
-    hypridle \
-    hyprlock \
-    hyprcursor \
-    hyprshot \
-    xdg-desktop-portal-hyprland \
-    xdg-desktop-portal-gtk \
-    wofi \
-    foot \
-    mako \
-    pipewire \
-    wireplumber \
-    bluez \
-    bluez-tools \
-    blueman \
-    pipewire-pulseaudio \
-    pipewire-alsa \
-    network-manager-applet \
     NetworkManager \
+    NetworkManager-iodine \
+    NetworkManager-l2tp \
+    NetworkManager-libreswan \
     NetworkManager-openvpn \
     NetworkManager-pptp \
-    NetworkManager-strongswan \
-    NetworkManager-vpnc \
-    NetworkManager-iodine \
-    NetworkManager-libreswan \
     NetworkManager-ssh \
     NetworkManager-sstp \
-    NetworkManager-l2tp \
-    qt5ct \
-    qt6ct \
-    waybar \
-    pamixer \
-    pavucontrol \
-    polkit-gnome \
+    NetworkManager-strongswan \
+    NetworkManager-vpnc \
+    Thunar \
+    adw-gtk3-theme \
+    adwaita-qt5 \
+    adwaita-qt6 \
+    blueman \
+    bluez \
+    bluez-tools \
+    ffmpegthumbnailer \
+    file-roller \
+    foot \
+    gnome-disk-utility \
     gnome-keyring \
     gnome-keyring-pam \
-    libsecret \
-    seahorse \
-    qt \
-    wlogout \
-    xdg-user-dirs \
-    xdg-user-dirs-gtk \
-    xdg-utils \
     gnome-system-monitor \
-    gnome-disk-utility \
-    udiskie \
-    sddm \
+    hyprcursor \
+    hypridle \
+    hyprland \
+    hyprlock \
+    hyprpaper \
+    hyprpicker \
+    hyprshot \
+    libsecret \
+    mako \
+    network-manager-applet \
+    pamixer \
+    pavucontrol \
+    pipewire \
+    pipewire-alsa \
+    pipewire-pulseaudio \
+    polkit-gnome \
+    qadwaitadecorations-qt5 \
+    qt \
     qt5-qtgraphicaleffects \
     qt5-qtquickcontrols2 \
     qt5-qtsvg \
-    ffmpegthumbnailer \
-    Thunar \
+    qt5ct \
+    qt6ct \
+    sddm \
+    seahorse \
+    thunar-archive-plugin \
     thunar-volman \
     tumbler \
-    thunar-archive-plugin \
-    file-roller \
-    adwaita-qt5 \
-    adwaita-qt6 \
-    qadwaitadecorations-qt5 \
-    adw-gtk3-theme \
     tuned \
     tuned-ppd \
-    tuned-utils \
-    tuned-switcher \
     tuned-profiles-atomic \
     tuned-profiles-cpu-partitioning \
+    tuned-switcher \
+    tuned-utils \
+    udiskie \
+    waybar \
+    wireplumber \
+    wlogout \
+    wofi \
+    xdg-desktop-portal-gtk \
+    xdg-desktop-portal-hyprland \
+    xdg-user-dirs \
+    xdg-user-dirs-gtk \
+    xdg-utils \
     xwaylandvideobridge
 
 rpm-ostree uninstall \
@@ -89,5 +87,3 @@ systemctl enable sddm.service
 
 systemctl --global enable gnome-keyring-daemon.service
 systemctl --global enable dotfile-manager.service
-
-#/scripts/cleanup.sh hyprland
