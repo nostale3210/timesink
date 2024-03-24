@@ -1,7 +1,6 @@
 FROM quay.io/fedora-ostree-desktops/base:39
 
 COPY files/ /
-RUN -v=./scripts/:/scripts
 COPY scripts/ /scripts
 
 RUN chmod +x /scripts/*
@@ -17,5 +16,5 @@ RUN /scripts/hypr.sh
 
 RUN /scripts/disable-repos.sh
 
-RUN rm -rf /* /var/* && \
+RUN rm -rf /* /var/* /scripts && \
     ostree container commit
