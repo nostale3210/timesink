@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo ${GPU_VENDOR}
-echo ${IMAGE_DE}
+echo $GPU_VENDOR
+echo $IMAGE_DE
 
 SCRIPTS=()
 SCRIPTS+=("add-repos" "common" "fusion")
