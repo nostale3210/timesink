@@ -4,12 +4,6 @@ set -oue pipefail
 
 echo "-----Install common components-----"
 
-#maybe relevant for nvidia
-mkdir -p /var/lib/alternatives
-mkdir -p /tmp
-mkdir -p /var/tmp
-chmod 1777 /tmp /var/tmp
-
 #packages for all images
 rpm-ostree install \
     distrobox \

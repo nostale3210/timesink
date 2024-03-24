@@ -4,6 +4,11 @@ set -oue pipefail
 
 echo "-----Building & Installing nvidia drivers-----"
 
+mkdir -p /var/lib/alternatives
+mkdir -p /tmp
+mkdir -p /var/tmp
+chmod 1777 /tmp /var/tmp
+
 rpm-ostree install \
     binutils \
     akmods \
