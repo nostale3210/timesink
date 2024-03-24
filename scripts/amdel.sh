@@ -12,4 +12,4 @@ rpm-ostree override remove \
     --install mesa-va-drivers-freeworld \
     --install mesa-vdpau-drivers-freeworld
 
-/scripts/cleanup.sh amd+intel
+#/scripts/cleanup.sh amd+intel

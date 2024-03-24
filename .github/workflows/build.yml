@@ -30,10 +30,10 @@ jobs:
         # This example uses this approach, because the variables of a build
         # are configurable in the Containerfile, and that is easier to grasp when starting out.
         containerfile: [
-          Containerfile.timesink-gnome-nonvidia,
-          Containerfile.timesink-gnome-nvidia,
-          Containerfile.timesink-hyprland-nonvidia,
-          Containerfile.timesink-hyprland-nvidia
+          Containerfile.timesink-gnome-nonvidia
+          #Containerfile.timesink-gnome-nvidia,
+          #Containerfile.timesink-hyprland-nonvidia,
+          #Containerfile.timesink-hyprland-nvidia
         ]
 
     steps: 
@@ -77,7 +77,7 @@ jobs:
 
       - name: Build Image
         id: build_image
-        uses: redhat-actions/buildah-build@v2
+        uses: redhat-actions/buildah-build@v2.13
         with:
           containerfiles: "./${{ matrix.containerfile }}" # select which containerfile to build
           image: ${{ env.IMAGE_NAME }} # names the built image
@@ -98,7 +98,7 @@ jobs:
           REGISTRY_USER: ${{ github.actor }}
           REGISTRY_PASSWORD: ${{ github.token }}
         with:
-          action: redhat-actions/push-to-registry@v2
+          action: redhat-actions/push-to-registry@v2.8
           attempt_limit: 3
           attempt_delay: 15000
           with: |

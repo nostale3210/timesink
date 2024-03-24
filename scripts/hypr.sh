@@ -90,4 +90,4 @@ systemctl enable sddm.service
 systemctl --global enable gnome-keyring-daemon.service
 systemctl --global enable dotfile-manager.service
 
-/scripts/cleanup.sh hyprland
+#/scripts/cleanup.sh hyprland

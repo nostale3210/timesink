@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+for i in m d h d;\
+    do\
+        echo "$i";\
+    done
+
+for script in add-repos common fusion amdel gnome disable-repos; \
+    do \
+        echo /scripts/$script.sh; \
+        echo /scripts/cleanup.sh $script; \
+    done
+
+
