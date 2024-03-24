@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VER=19
+VER=20
 VER_FILE=/etc/timesink/ver
 VER_RAN=$(cat $VER_FILE)
 
