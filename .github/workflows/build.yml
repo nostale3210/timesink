@@ -92,7 +92,7 @@ jobs:
           string: ${{ env.IMAGE_REGISTRY }}
 
       - name: Push To GHCR
-        uses: Wandalen/wretry.action@1.4.10
+        uses: Wandalen/wretry.action@v2.1.0
         id: push
         env: # set user and pass to use for logging in to GHCR
           REGISTRY_USER: ${{ github.actor }}
