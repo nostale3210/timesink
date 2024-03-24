@@ -2,8 +2,7 @@
 
 set -oue pipefail
 
-SCRIPTS=()
-SCRIPTS+=("add-repos" "common" "fusion")
+SCRIPTS=("add-repos" "common" "fusion")
 
 if [[ "$1" = "nonvidia" ]]; then
     SCRIPTS+=("amdel")
