@@ -67,7 +67,7 @@ jobs:
         id: generate-tags
         shell: bash
         run: |
-          FVER="{{ matrix.major_version }}"
+          FVER="${{ matrix.major_version }}"
           TAGS=()
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             TAGS+=("pr-${{ github.event.number }}")
