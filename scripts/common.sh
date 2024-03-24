@@ -80,5 +80,3 @@ mkdir -p /usr/share/icons
 curl -OL https://github.com/ful1e5/Bibata_Cursor/releases/latest/download/Bibata-Modern-Classic.tar.xz
 tar -xf Bibata-Modern-Classic.tar.xz --directory /usr/share/icons/
 rm -rf Bibata-Modern-Classic.tar.xz
-
-curl -LO https://cdn.discordapp.com/attachments/1216066899729977435/1219403124196905060/Bibata-Modern-Classic.tar.gz?ex=660b2ca8&is=65f8b7a8&hm=7e690b4de3035146e594199456c81849c9f87274ab04e04d3ae2435190b125d3&
