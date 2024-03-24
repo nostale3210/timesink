@@ -14,7 +14,8 @@ COPY environment /etc
 ADD certs/public_key.der /etc/pki/akmods/certs/public_key.der
 ADD certs/private_key.priv /etc/pki/akmods/private/private_key.priv
 
-RUN chmod +x /scripts/*
+RUN chmod +x /scripts/* \
+    echo $GPU_VENDOR $IMAGE_FLAVOR
 RUN /scripts/scripts.sh $GPU_VENDOR $IMAGE_FLAVOR
 
 RUN rm -rf /tmp/* /var/* /scripts && \
