@@ -21,9 +21,3 @@ fi
 SCRIPTS+=("disable-repos")
 
 echo ${SCRIPTS[@]}
-
-#for script in ${SCRIPTS[@]}; do
-#    echo "========== Running script: $script =========="
-#    /scripts/$script.sh;
-#    /scripts/cleanup.sh $script;
-#done
