@@ -42,7 +42,7 @@ jobs:
             echo "SOURCE_IMAGE=base" >> $GITHUB_ENV
           fi
 
-          if [[ "${{ matix.build_target }}" == "nvidia" ]]; then
+          if [[ "${{ matrix.build_target }}" == "nvidia" ]]; then
             export IMAGE_FLAVOR=nvidia
           else
             export IMAGE_FLAVOR=nonvidia
