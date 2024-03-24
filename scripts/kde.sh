@@ -16,4 +16,4 @@ chmod +x /usr/libexec/system76-scheduler-dbus-proxy.sh
 
 systemctl --global enable com.system76.Scheduler.dbusproxy.service
 
-/tmp/scripts/cleanup.sh
+scripts/cleanup.sh

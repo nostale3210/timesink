@@ -18,4 +18,4 @@ rpm-ostree install \
     gstreamer1-vaapi \
     steam-devices
 
-/tmp/scripts/cleanup.sh
+scripts/cleanup.sh

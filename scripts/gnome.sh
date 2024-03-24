@@ -18,4 +18,4 @@ sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/appl
 
 glib-compile-schemas /usr/share/glib-2.0/schemas
 
-/tmp/scripts/cleanup.sh
+scripts/cleanup.sh
