@@ -51,7 +51,7 @@ jobs:
             ${{ env.IMAGE_NAME }}
           labels: |
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
-            org.opencontainers.image.description=${{ env.IMAGE_NAME }} is my custom OS image.
+            org.opencontainers.image.description=${{ env.IMAGE_NAME }}
 
       - name: Generate tags
         id: generate-tags
@@ -92,17 +92,21 @@ jobs:
           string: ${{ env.IMAGE_REGISTRY }}
 
       - name: Push To GHCR
-        uses: redhat-actions/push-to-registry@v2
+        uses: Wandalen/wretry.action@1.4.10
         id: push
         env: # set user and pass to use for logging in to GHCR
           REGISTRY_USER: ${{ github.actor }}
           REGISTRY_PASSWORD: ${{ github.token }}
         with:
-          image: ${{ steps.build_image.outputs.image }} # pulls in the newly built image from previous step
-          tags: ${{ steps.build_image.outputs.tags }} # pulls in tags from previous step
-          registry: ${{ steps.registry_case.outputs.lowercase }} # pulls in lowercased image registry string from previous step
-          username: ${{ env.REGISTRY_USER }}
-          password: ${{ env.REGISTRY_PASSWORD }}
+          action: redhat-actions/push-to-registry@v2
+          attempt_limit: 3
+          attempt_delay: 15000
+          with: |
+            image: ${{ steps.build_image.outputs.image }} # pulls in the newly built image from previous step
+            tags: ${{ steps.build_image.outputs.tags }} # pulls in tags from previous step
+            registry: ${{ steps.registry_case.outputs.lowercase }} # pulls in lowercased image registry string from previous step
+            username: ${{ env.REGISTRY_USER }}
+            password: ${{ env.REGISTRY_PASSWORD }}
 
       - name: Login to GHCR
         uses: docker/login-action@v3
