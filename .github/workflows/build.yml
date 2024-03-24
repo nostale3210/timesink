@@ -76,7 +76,7 @@ jobs:
           echo "TAGS=${TAGS[*]}" >> $GITHUB_OUTPUT
 
       - name: Pull base image
-        uses: Wandalen:wretry.action@v2.1.0
+        uses: Wandalen/wretry.action@v2.1.0
         with:
           attempt_limit: 3
           attempt_delay: 15000
