@@ -60,7 +60,7 @@ rpm-ostree install \
     tuned-ppd \
     tuned-profiles-atomic \
     tuned-profiles-cpu-partitioning \
-    tuned-switcher \
+    tuned-gtk \
     tuned-utils \
     udiskie \
     waybar \
