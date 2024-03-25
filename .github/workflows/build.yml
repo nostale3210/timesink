@@ -40,11 +40,12 @@ jobs:
       - name: Gather environment variables
         shell: bash
         run: |
-          echo "SOURCE_ORG=fedora-ostree-desktops" >> $GITHUB_ENV
           
           if grep "${{ matrix.image_name }}" <<< "silverblue"; then
-            echo "SOURCE_IMAGE=${{ matrix.image_name }}" >> $GITHUB_ENV
+            echo "SOURCE_ORG=fedora" >> $GITHUB_ENV
+            echo "SOURCE_IMAGE=fedora-${{ matrix.image_name }}" >> $GITHUB_ENV
           else
+            echo "SOURCE_ORG=fedora-ostree-desktops" >> $GITHUB_ENV
             echo "SOURCE_IMAGE=base" >> $GITHUB_ENV
           fi
 
@@ -74,7 +75,6 @@ jobs:
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             TAGS+=("pr-${{ github.event.number }}")
           else
-            TAGS+=("$(date +%Y%m%d)")
             TAGS+=("${FVER}")
             TAGS+=("${FVER}-$(date +%Y%m%d)")
           fi
