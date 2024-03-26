@@ -13,11 +13,11 @@ rpm-ostree install \
     NetworkManager-sstp \
     NetworkManager-strongswan \
     NetworkManager-vpnc \
-    Thunar \
     adw-gtk3-theme \
     adwaita-qt5 \
     adwaita-qt6 \
     blueman \
+    blueman-nemo \
     bluez \
     bluez-tools \
     ffmpegthumbnailer \
@@ -27,7 +27,10 @@ rpm-ostree install \
     gnome-keyring \
     gnome-keyring-pam \
     gnome-system-monitor \
+    gvfs-archive \
+    gvfs-gphoto2 \
     gvfs-mtp \
+    gvfs-smb \
     hyprcursor \
     hypridle \
     hyprland \
@@ -37,7 +40,12 @@ rpm-ostree install \
     hyprshot \
     libsecret \
     mako \
+    nemo \
+    nemo-fileroller \
+    nemo-image-converter \
+    nemo-preview \
     network-manager-applet \
+    nextcloud-client-nemo \
     pamixer \
     pavucontrol \
     pipewire \
@@ -53,9 +61,7 @@ rpm-ostree install \
     qt6ct \
     sddm \
     seahorse \
-    thunar-archive-plugin \
-    thunar-volman \
-    tumbler \
+    system-config-printer \
     tuned \
     tuned-ppd \
     tuned-profiles-atomic \
