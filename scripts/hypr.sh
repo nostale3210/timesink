@@ -93,3 +93,5 @@ systemctl enable sddm.service
 
 systemctl --global enable gnome-keyring-daemon.service
 systemctl --global enable dotfile-manager.service
+
+sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nNoDisplay=true@g' /usr/share/applications/nvim.desktop
