@@ -45,7 +45,6 @@ rpm-ostree install \
     nemo-image-converter \
     nemo-preview \
     network-manager-applet \
-    nextcloud-client-nemo \
     pamixer \
     pavucontrol \
     pipewire \
