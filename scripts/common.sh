@@ -2,6 +2,17 @@
 
 set -oue pipefail
 
+#Install latest kernel if source image is not updated
+rpm-ostree cliwrap install-to-root / && \
+rpm-ostree override replace \
+    --experimental \
+    --from repo=updates \
+    kernel \
+    kernel-core \
+    kernel-modules \
+    kernel-modules-core \
+    kernel-modules-extra
+
 #packages for all images
 rpm-ostree install \
     distrobox \
