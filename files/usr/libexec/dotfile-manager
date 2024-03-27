@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VER=7
+VER=8
 VER_FILE=~/.config/ver-dot
 
 if [[ ! -f $VER_FILE ]]; then
@@ -14,8 +14,6 @@ if [[ -f $VER_FILE && $VER = $VER_RAN ]]; then
     exit 0
 fi
 
-rm -rf ~/.config/hypr ~/.config/foot ~/.config/mako ~/.config/waybar ~/.config/wofi ~/.config/wlogout ~/.config/zellij
-
-cp -r /usr/share/timesink/config/* ~/.config/
+cp -rf /usr/share/timesink/config/* ~/.config/
 
 echo $VER > $VER_FILE
