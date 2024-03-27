@@ -7,15 +7,16 @@ mkdir -p /tmp
 mkdir -p /var/tmp
 chmod 1777 /tmp /var/tmp
 
-#rpm-ostree cliwrap install-to-root / && \
-#rpm-ostree override replace \
-#    --experimental \
-#    --from repo=updates \
-#    kernel \
-#    kernel-core \
-#    kernel-modules \
-#    kernel-modules-core \
-#    kernel-modules-extra
+rpm-ostree cliwrap install-to-root / && \
+rpm-ostree override replace \
+    --experimental \
+    --from repo=updates \
+    kernel \
+    kernel-core \
+    kernel-modules \
+    kernel-modules-core \
+    kernel-modules-extra \
+    kernel-devel
 
 rpm-ostree install \
     binutils \
