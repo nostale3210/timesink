@@ -2,7 +2,7 @@
 
 set -oue pipefail
 
-# sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/fedora-updates-archive.repo
+sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/fedora-updates-archive.repo
 
 wget https://copr.fedorainfracloud.org/coprs/che/nerd-fonts/repo/fedora-$(rpm -E %fedora)/che-nerd-fonts-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_che-nerd-fonts.repo
 wget https://copr.fedorainfracloud.org/coprs/gloriouseggroll/nvidia-explicit-sync/repo/fedora-$(rpm -E %fedora)/gloriouseggroll-nvidia-explicit-sync-fedora-$(rpm -E %fedora).repo?arch=x86_64 -O /etc/yum.repos.d/_copr_gloriouseggroll-nvidia-explicit-sync.repo
