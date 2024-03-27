@@ -19,9 +19,9 @@ ADD certs/private_key.priv /etc/pki/akmods/private/private_key.priv
 RUN chmod +x /scripts/* && \
     SCRIPTS=$(/scripts/scripts.sh ${GPU_VENDOR} ${IMAGE_DE}) && \
     for script in ${SCRIPTS[@]}; do \
-        echo "========== Running script: $script =========="; \
-        /scripts/$script.sh; \
-        echo "------------ Cleaning up $script ------------"; \
+        echo "========== Running script: $script ==========" && \
+        /scripts/$script.sh && \
+        echo "------------ Cleaning up $script ------------" && \
         rm -rf /tmp/* /var/* && ostree container commit; done
 
 RUN rm -rf /tmp/* /var/* /scripts && \
