@@ -2,17 +2,6 @@
 
 set -oue pipefail
 
-#install newest kernel
-rpm-ostree cliwrap install-to-root / && \
-rpm-ostree override replace \
-    --experimental \
-    --from repo=updates \
-    kernel \
-    kernel-core \
-    kernel-modules \
-    kernel-modules-core \
-    kernel-modules-extra \
-
 #packages for all images
 rpm-ostree install \
     distrobox \

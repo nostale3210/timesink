@@ -20,7 +20,7 @@ RUN chmod +x /scripts/* && \
     SCRIPTS=$(/scripts/scripts.sh ${GPU_VENDOR} ${IMAGE_DE}) && \
     for script in ${SCRIPTS[@]}; do \
         echo "========== Running script: $script ==========" && \
-        /scripts/$script.sh && \
+        /scripts/$script.sh || exit 1 && \
         echo "------------ Cleaning up $script ------------" && \
         rm -rf /tmp/* /var/* && ostree container commit; done
 
