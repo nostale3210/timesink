@@ -2,6 +2,8 @@
 
 set -oue pipefail
 
+#install newest kernel
+rpm-ostree cliwrap install-to-root / && \
 rpm-ostree override replace \
     --experimental \
     --from repo=updates \
