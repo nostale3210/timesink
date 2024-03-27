@@ -2,11 +2,18 @@
 
 set -oue pipefail
 
+rpm-ostree override remove \
+    kernel \
+    kernel-core \
+    kernel-modules \
+    kernel-modules-core \
+    kernel-modules-extra \
+    --install kernel
+
 #packages for all images
 rpm-ostree install \
     distrobox \
     fastfetch \
-    kernel-core \
     neovim \
     nerd-fonts \
     papirus-icon-theme \
