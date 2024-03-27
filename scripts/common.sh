@@ -6,6 +6,7 @@ set -oue pipefail
 rpm-ostree install \
     distrobox \
     fastfetch \
+    kernel-devel-$(rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}') \
     neovim \
     nerd-fonts \
     papirus-icon-theme \
