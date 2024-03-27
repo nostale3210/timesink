@@ -2,13 +2,14 @@
 
 set -oue pipefail
 
-rpm-ostree override remove \
+rpm-ostree override replace \
+    --experimental \
+    --from repo=updates \
     kernel \
     kernel-core \
     kernel-modules \
     kernel-modules-core \
     kernel-modules-extra \
-    --install kernel
 
 #packages for all images
 rpm-ostree install \
