@@ -9,7 +9,8 @@ rpm-ostree override replace \
     kernel-core \
     kernel-modules \
     kernel-modules-core \
-    kernel-modules-extra
+    kernel-modules-extra \
+|| echo "Installing kernel from repo updates failed."
 
 set -oue pipefail
 
