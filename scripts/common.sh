@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -oue pipefail
-
 #Install latest kernel if source image is not updated
 rpm-ostree cliwrap install-to-root / && \
 rpm-ostree override replace \
@@ -12,6 +10,8 @@ rpm-ostree override replace \
     kernel-modules \
     kernel-modules-core \
     kernel-modules-extra
+
+set -oue pipefail
 
 #packages for all images
 rpm-ostree install \
